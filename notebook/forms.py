@@ -8,11 +8,6 @@ class ItemForm(forms.ModelForm):
         model = Item
         fields = [
             "name",
+            "text",
         ]
 
-class Block2Form(forms.ModelForm):
-    class Meta:
-        model = Block2
-        fields = [
-            "chat",
-        ]
