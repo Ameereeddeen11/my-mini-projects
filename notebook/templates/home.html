@@ -2,15 +2,22 @@
 {% block title %}Home Page{% endblock %}
 {% block content %}
     {% if item %}
-        {% for items in item %}
-            <a href="{{item.id}}"></a><button type="button" class="btn btn-secondary">{{item.name}}</button>
-        {% endfor %}
+            <div class="text-center">
+                {% for items in item %}
+                    <br>
+                    <a href="/note/detail/{{items.id}}/"><button type="button" class="btn btn-secondary">{{items.name}}</button></a>
+                    <br>
+                {% endfor %}
+                <br>
+                <a href="/note/create/"><button class="btn btn-secondary">Create New</button></a>
+                <br>
+            </div>
     {% else %}
-    <br>
-    <div class="text-center">
-        <a href="/create"></a><button class="btn btn-secondary">Create New</button>
-    </div>
-    <br>
+        <br>
+        <div class="text-center">
+            <a href="/note/create/"><button class="btn btn-secondary">Create New</button></a>
+        </div>
+        <br>
     {% endif %}
 {% endblock %}
 {% block content2 %}
