@@ -19,7 +19,7 @@ from registrations import views as v
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    #path("note/", include("notebook.urls")),
+    path("note/", include("notebook.urls")),
     path("register/", v.register, name="register"),
     path("", include("django.contrib.auth.urls")),
 ]

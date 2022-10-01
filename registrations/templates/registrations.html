@@ -11,7 +11,7 @@
                             <div class="card-body p-5 text-center">
                                 <h3 class="mb-5">{%block login_title%}Sign in{%endblock%}</h3>
                                 <div class="form-outline mb-4">
-                                    {%csrf_token%}
+                                    {%csrf_token%}  
                                     {{ form|crispy }}
                                 </div>
                                 <!--Checkbox--> 

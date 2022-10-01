@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import *
 
-# Create your views here.
+def home(response):
+    return render(response, "home.html", {})
+
+def create(request):
+    return render(request, "create.html", {})
