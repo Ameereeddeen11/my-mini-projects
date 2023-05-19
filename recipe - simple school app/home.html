@@ -10,6 +10,18 @@
                 background: #4d3664;
                 background: linear-gradient(90deg, #4d3664 0%, rgb(206, 189, 226), 43%, #bab5f6 100%);
             }
+            .card {
+              display: flex;
+              flex-direction: column;
+            }
+        
+            .fit-cover {
+              flex-grow: 1;
+              object-fit: cover;
+              object-position: center;
+              height: 200px;
+              width: 100%;
+            }
         </style>
     </head>
     <body>
@@ -35,19 +47,17 @@
                 </div>
             </div>
         </nav>
-        <!--<div class=" rounded" style="background-color: white;">-->
-            <form class="container py-5 d-flex" role="search">
-                <input class="form-control me-5" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-primary" type="submit">Hledani</button>
-            </form>
-        <!--</div>-->
+        <form class="container py-5 d-flex" role="search">
+            <input class="form-control me-5" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-primary" type="submit">Hledani</button>
+        </form>
         <div class="container py-5">
             <div class="row">
-                <div class="col">
+                <div class="col ">
                     <div class="card mb-3 shadow p-2" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-12">
-                                <img src="img/testoviny_s_omackou.jpg" class="img-fluid rounded-start rounded" alt="...">
+                                <img src="img/testoviny_s_omackou.jpg" class="img-fluid rounded-start rounded fit-cover" alt="...">
                             </div>
                             <div class="col-md-12">
                                 <div class="card-body">
@@ -63,7 +73,7 @@
                     <div class="card mb-3 shadow p-2" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-12">
-                                <img src="img/grilovana_kureci_prsa.jpg" class="img-fluid rounded-start rounded" alt="...">
+                                <img src="img/grilovana_kureci_prsa.jpg" class="img-fluid rounded-start rounded fit-cover" alt="...">
                             </div>
                             <div class="col-md-12">
                                 <div class="card-body">
@@ -79,7 +89,7 @@
                     <div class="card mb-3 shadow p-2" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-12">
-                                <img src="img/testoviny_s_kurecim_masem.jpg" class="img-fluid rounded-start rounded" alt="...">
+                                <img src="img/testoviny_s_kurecim_masem.jpg" class="img-fluid rounded-start rounded fit-cover" alt="...">
                             </div>
                             <div class="col-md-12">
                                 <div class="card-body">
@@ -97,7 +107,7 @@
                     <div class="card mb-3 shadow p-2" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-12">
-                                <img src="img/tost_s_avokadem.jpg" class="img-fluid rounded-start rounded" alt="...">
+                                <img src="img/tost_s_avokadem.jpg" class="img-fluid rounded-start rounded fit-cover" alt="...">
                             </div>
                             <div class="col-md-12">
                                 <div class="card-body">
@@ -113,7 +123,7 @@
                     <div class="card mb-3 shadow p-2" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-12">
-                                <img src="img/omeleta_se_zeleninou.jpg" class="img-fluid rounded-start rounded" alt="...">
+                                <img src="img/omeleta_se_zeleninou.jpg" class="img-fluid rounded-start rounded fit-cover" alt="...">
                             </div>
                             <div class="col-md-12">
                                 <div class="card-body">
@@ -129,7 +139,7 @@
                     <div class="card mb-3 shadow p-2" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-12">
-                                <img src="img/testovinovy_salat.jpg" class="img-fluid rounded-start rounded" alt="...">
+                                <img src="img/testovinovy_salat.jpg" class="img-fluid rounded-start rounded fit-cover" alt="...">
                             </div>
                             <div class="col-md-12">
                                 <div class="card-body">
@@ -147,7 +157,7 @@
                     <div class="card mb-3 shadow p-2" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-12">
-                                <img src="img/bruschetta_s_rajcaty.jpg" class="img-fluid rounded-start rounded" alt="...">
+                                <img src="img/bruschetta_s_rajcaty.jpg" class="img-fluid rounded-start rounded fit-cover" alt="...">
                             </div>
                             <div class="col-md-12">
                                 <div class="card-body">
@@ -163,7 +173,7 @@
                     <div class="card mb-3 shadow p-2" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-12">
-                                <img src="img/losos_s_pecenou_zeleninou.jpg" class="img-fluid rounded-start rounded" alt="...">
+                                <img src="img/losos_s_pecenou_zeleninou.jpg" class="img-fluid rounded-start rounded fit-cover" alt="...">
                             </div>
                             <div class="col-md-12">
                                 <div class="card-body">
@@ -179,7 +189,7 @@
                     <div class="card mb-3 shadow p-2" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-12">
-                                <img src="img/tacos_s_hovezim_masem.jpg" class="img-fluid rounded-start rounded" alt="...">
+                                <img src="img/tacos_s_hovezim_masem.jpg" class="img-fluid rounded-start rounded fit-cover" alt="...">
                             </div>
                             <div class="col-md-12">
                                 <div class="card-body">
