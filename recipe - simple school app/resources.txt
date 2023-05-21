@@ -1,6 +1,6 @@
 logo => https://www.brandcrowd.com/maker/logo/chef-recipe-pen-5469?isSearch=True 
 
-meal photos:
+meal, humans photos:
 Tacos s hovězim masem => https://www.receptyschuti.cz/recept/tacos-s-trhanym-masem/2262 
 Losos s pečenou zeleninou => https://www.nutriadapt.sk/recepty/losos-na-pare-s-grilovanou-zeleninou/2
 Bruschetta s rajčaty => https://www.gustini.cz/antipasti-olivy-ryby/bruschetta.html 
@@ -13,3 +13,5 @@ Těstoviny s omačkou => https://www.toprecepty.cz/recept/64931/fotografie-21770
 human1 => https://unsplash.com/photos/rDEOVtE7vOs 
 human2 => https://mymodernmet.com/free-ai-generated-faces/
 human3 => https://unsplash.com/photos/7YVZYZeITc8 
+
+recipes: create ChatGPT 
