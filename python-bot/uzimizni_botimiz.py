@@ -4,6 +4,8 @@ from datetime import date
 import json
 file_path1 = open('C:/Users/Amir/Desktop/Python/bot/uzimiz.json', 'r')
 token = json.load(file_path1)
+file_path2 = open('C:/Users/Amir/Desktop/Python/bot/birthdays.json', 'r')
+birthday = json.load(file_path2)
 
 #commands
 async def start_command (update:Update, context:ContextTypes.DEFAULT_TYPE):
@@ -23,7 +25,13 @@ def handle_response(text:str):
         return 'hello there! ask me to someones birthday'
 
     elif "amir" in processed:
-        return "03.03.2005"
+        return birthday["Amir"]
+
+    elif "oyimni tugilgan kuni" in processed:
+        return birthday["Oyim"]
+
+    elif "dadami tugilgan kuni" in processed:
+        return birthday["Dadam"]
 
     else:
         return "I don't know"
