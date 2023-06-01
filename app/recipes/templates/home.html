@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+{% block title %}Recipes{% endblock %}
+{% block content %}
+<form class="container py-5 d-flex" role="search">
+    <input class="form-control me-5" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-primary" type="submit">Hledani</button>
+</form>
+<div class="container py-5">
+    <div class="row">
+        <div class="col">
+            <div class="card mb-3 shadow p-2" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <img src="img/testoviny_s_omackou.jpg" class="img-fluid rounded-start rounded fit-cover" alt="...">
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-body">
+                            <h5 class="card-title">Těstoviny s omačkou</h5>
+                            <p class="card-text">Tento těstovinový pokrm s bohatou omáčkou je dokonalým spojením sytých chutí a jednoduché přípravy, která vás zaručeně potěší a zahřeje.</p>
+                            <a href="recipes/testoviny_s_omackou.html" class="btn btn-primary">Recept</a>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card mb-3 shadow p-2" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <img src="img/grilovana_kureci_prsa.jpg" class="img-fluid rounded-start rounded fit-cover" alt="...">
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-body">
+                            <h5 class="card-title">Grilovana kuřeci prsa</h5>
+                            <p class="card-text">Grilovaná kuřecí prsa jsou skvělou volbou pro zdravý a výživný jídelníček. Jejich šťavnatost a grilováním získaná výrazná chuť dodají vašemu jídlu nezapomenutelný zážitek.</p>
+                            <a href="/recipe - simple school app/recipes/grilovana_kureci_prsa.html" class="btn btn-primary">Recept</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card mb-3 shadow p-2" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <img src="img/testoviny_s_kurecim_masem.jpg" class="img-fluid rounded-start rounded fit-cover" alt="...">
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-body">
+                            <h5 class="card-title">Těstoviny s kuřecim masem</h5>
+                            <p class="card-text">Tento těstovinový salát je ideální volbou pro rychlý a chutný oběd nebo večeři. Kuřecí maso dodává jídlu bílkoviny a spolu s osvěžující zeleninou vytváří vyvážené a lahodné jídlo.</p>
+                            <a href="recipes/testoviny_s_kurecim_masem.html" class="btn btn-primary">Recept</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
