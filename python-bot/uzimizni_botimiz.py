@@ -1,11 +1,13 @@
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
-from datetime import date
+import datetime
 import json
 file_path1 = open('C:/Users/Amir/Desktop/Python/bot/uzimiz.json', 'r')
 token = json.load(file_path1)
 file_path2 = open('C:/Users/Amir/Desktop/Python/bot/birthdays.json', 'r')
-birthday = json.load(file_path2)
+#birthday = json.load(file_path2)['tugilgan kun']
+date = datetime.date.today()
+birthday2 = json.load(file_path2)
 
 #commands
 async def start_command (update:Update, context:ContextTypes.DEFAULT_TYPE):
@@ -24,15 +26,32 @@ def handle_response(text:str):
     if 'hello' in processed:
         return 'hello there! ask me to someones birthday'
 
-    elif "amir" in processed:
-        return birthday["Amir"]
+    elif "amir tugilgan kuni qachon?" in processed:
+        return birthday2["Amir"]
 
-    elif "oyimni tugilgan kuni" in processed:
-        return birthday["Oyim"]
+    elif "oyimni tugilgan kuni qachon?" in processed:
+        return birthday2["Oyim"]
 
-    elif "dadami tugilgan kuni" in processed:
-        return birthday["Dadam"]
+    elif "dadami tugilgan kuni qachon?" in processed:
+        return birthday2["Dadam"]
 
+    elif "kimni tugilgan kuni bugun?" in processed:
+        closest_diff = datetime.timedelta(days=365)
+        closest_person = None
+        closest_date = None
+        for name, data in birthday2["tugilgan kun"].items():
+            birthday_date = datetime.datetime.strptime(data, "%m-%d").date()
+
+            diff = abs(birthday_date - date)
+            if 0 <= diff.days < closest_diff.days:
+                closest_diff = diff
+                closest_date = data
+                closest_person = name
+
+        if birthday2 == date:
+            return "Bugun ", name, "tugilgan kuni bor"
+        else:
+            return "Bugun", date.strftime("%m-%d"), "Hech kimni tugilgan kuni yoq. Lekin ", closest_date, " kuna ", closest_person
     else:
         return "I don't know"
 
@@ -43,7 +62,7 @@ async def handle_message(update: Update, context:ContextTypes.DEFAULT_TYPE):
 
     if message_type == 'group':
         if token["BOT_USERNAME"] in text:
-            new_text: str = text.replace((token["BOT_USERNAME"], '')).strip()
+            new_text: str = text.replace((token["@BOT_USERNAME"], '')).strip()
             response: str = handle_response(new_text)
         else:
             return
