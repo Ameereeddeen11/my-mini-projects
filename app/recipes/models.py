@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-<<<<<<< HEAD
-=======
 class Category(models.Model):
     name = models.CharField(max_length=150)
 
@@ -49,4 +47,3 @@ class Rating(models.Model):
 
     def __str__(self):
         return f'{self.user_id.username} - {self.recipe_id.title ({self.score})}'
->>>>>>> django-recipes
