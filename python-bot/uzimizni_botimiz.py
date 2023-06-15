@@ -33,6 +33,9 @@ def handle_response(text:str):
     elif "dadami tugilgan kuni" in processed:
         return birthday["Dadam"]
 
+    elif "kimni tugilgan kuni" in processed:
+        if date == birthday:
+
     else:
         return "I don't know"
 
