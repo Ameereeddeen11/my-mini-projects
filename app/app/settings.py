@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-m)sq2)41b#!jaz#$#amz008%lfl**8_$j8ds3p(u576rg7y$94"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True 
 
 ALLOWED_HOSTS = ["*"]
 
@@ -40,7 +40,12 @@ INSTALLED_APPS = [
     "bootstrap5",
     "recipes.apps.RecipesConfig",
     "register.apps.RegisterConfig",
+    "crispy_forms",
+    "crispy_bootstrap5"
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
