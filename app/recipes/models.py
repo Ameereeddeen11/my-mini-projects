@@ -19,6 +19,10 @@ class Recipes(models.Model):
     def __str__(self):
         return "f{self.title} - {self.discription} - {self.created_by.username}"
     
+class ImagesRecipes(models.Model):
+    recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE)
+    image = models.FileField(upload_to='media/')
+
 class Ingredient(models.Model):
     name = models.CharField(max_length=200)
 
