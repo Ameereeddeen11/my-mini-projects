@@ -11,7 +11,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os, json
+
+# Import json file
+file_path = open('C:/Users/Amir/Desktop/Python/bot/aws_s3.json', 'r')
+token = json.load(file_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -144,5 +148,5 @@ LOGOUT_REDIRECT_URL = "/home/"
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_STORAGE_BUCKET_NAME = 'myminiprojectrecipe'
-AWS_S3_ACCESS_KEY_ID = ''
-AWS_S3_SECRET_ACCESS_KEY = ''
+AWS_S3_ACCESS_KEY_ID = token["AWS_S3_ACCESS_KEY_ID"]
+AWS_S3_SECRET_ACCESS_KEY = token["AWS_S3_SECRET_ACCESS_KEY"]

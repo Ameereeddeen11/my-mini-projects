@@ -1,0 +1,8 @@
+# ignore all .log files
+*.log
+
+#ignore all folder temp
+temp/
+
+#ignore settings.py
+/settings.py
