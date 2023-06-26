@@ -8,8 +8,9 @@
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-    <!--{% load static %}-->
-    <link rel="stylesheet" href="https://myminiprojectrecipe.s3.amazonaws.com/static/style.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css   ' %}">
+    <!--<link rel="stylesheet" href="https://myminiprojectrecipe.s3.amazonaws.com/static/style.css">-->
 </head>
 <body>
     <br>
@@ -18,7 +19,7 @@
         <nav class="navbar container mb-1 bg-body shadow p-1 rounded" style="background-color: e3f2fd;">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <img src="https://myminiprojectrecipe.s3.eu-north-1.amazonaws.com/static/logo.png" alt="Logo" width="90" height="90" class="d-inline-block text-center">
+                    <img src="logo.png" alt="Logo" width="90" height="90" class="d-inline-block text-center">
                     Recipes
                 </a>
                 <div class="dropdown">
@@ -50,7 +51,7 @@
                         </svg> 
                     </a>
                     <ul class="dropdown-menu text-small">
-                        <li><a class="dropdown-item" href="new_recipes.html">Novy resept</a></li>
+                        <li><a class="dropdown-item" href="/login/">Novy resept</a></li>
                         <li><a class="dropdown-item" href="/login/">Login</a></li>
                         <li><a class="dropdown-item" href="/register/">Sign in</a></li>
                     </ul>
