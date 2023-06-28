@@ -5,4 +5,4 @@
 temp/
 
 #ignore settings.py
-settings.py
+app/app/settings.py
