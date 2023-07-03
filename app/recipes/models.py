@@ -21,7 +21,7 @@ class Recipes(models.Model):
     
 class ImagesRecipes(models.Model):
     recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE)
-    image = models.FileField(upload_to='images/')
+    image = models.FileField(upload_to='images/', default='unkown-profile.jpg')
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=200)

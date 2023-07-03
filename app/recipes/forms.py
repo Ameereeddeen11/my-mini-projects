@@ -15,9 +15,12 @@ class RecipeForm(forms.ModelForm):
 class IngredientForm(forms.ModelForm):
     class Meta:
         model = Ingredient
-        field = "name"
+        exclude = ["name"]
 
-class FavoriteRecipeForm(forms.Model):
+class ImageForm(forms.ModelForm):
+    pass
+
+class FavoriteRecipeForm(forms.ModelForm):
     class Meta:
         model = FavoriteRecipe
         fields = [
