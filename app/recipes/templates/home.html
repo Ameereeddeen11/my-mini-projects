@@ -8,20 +8,22 @@
 <div class="container py-5">
     <div class="row">
         <div class="col">
-            <div class="card mb-3 shadow p-2" style="max-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-12">
-                        <img src="{{ recipes_pic.image.url }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card-body">
-                            <h5 class="card-title">Těstoviny s omačkou</h5>
-                            <p class="card-text">Tento těstovinový pokrm s bohatou omáčkou je dokonalým spojením sytých chutí a jednoduché přípravy, která vás zaručeně potěší a zahřeje.</p>
-                            <a href="recipes/testoviny_s_omackou.html" class="btn btn-primary">Recept</a>    
+            {% for recipes in recipe %}
+                <div class="card mb-3 shadow p-2" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-12">
+                            <img src="{{ recipes.image.url }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-body">
+                                <h5 class="card-title">{{recipes.title}}</h5>
+                                <p class="card-text">Tento těstovinový pokrm s bohatou omáčkou je dokonalým spojením sytých chutí a jednoduché přípravy, která vás zaručeně potěší a zahřeje.</p>
+                                <a href="recipes/testoviny_s_omackou.html" class="btn btn-primary">Recept</a>    
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

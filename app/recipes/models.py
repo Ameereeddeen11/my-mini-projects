@@ -10,33 +10,20 @@ class Category(models.Model):
 class Recipes(models.Model):
     title = models.CharField(max_length=150)
     discription = models.TextField()
-    ingredient = models.ManyToManyField('Ingredient', through='RecipeIngredient')
+    ingredient = models.TextField(null=True)
     instructions = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    image = models.ImageField(null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return "f{self.title} - {self.discription} - {self.created_by.username}"
     
-class ImagesRecipes(models.Model):
-    recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE)
-    image = models.FileField(upload_to='images/', default='unkown-profile.jpg')
+#class ImagesRecipes(models.Model):
+#    recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE)
+#    image = models.FileField(upload_to='images/', default='unkown-profile.jpg')
 
-class Ingredient(models.Model):
-    name = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.name
-    
-class RecipeIngredient(models.Model):
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    recipe = models.ForeignKey(Recipes, on_delete=models.CASCADE)
-    quantity = models.CharField(max_length=50)
-    
-    def __str__(self):
-        return f'{self.ingredient.name} ({self.quantity})'
-    
 class FavoriteRecipe(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE)

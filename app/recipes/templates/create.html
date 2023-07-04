@@ -1,29 +1,18 @@
 {% extends "index.html" %}
 {% block title %}Create Recipes{% endblock %}
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="container py-5 rounded-4 shadow p-1" style="background-color: white;">
-    <div class="mb-3 custom-text">
-        <label for="exampleFormControlInput1" class="form-label">Nazev</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="nazev">
-    </div>
-    <div class="mb-3 custom-text">
-        <label for="formFile" class="form-label">Vyberte fotku</label>
-        <input class="form-control" type="file" id="formFile">
-    </div>
-    <div class="mb-3 custom-text">
-        <label for="exampleFormControlTextarea1" class="form-label">Potřebne suroviny</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-    <div class="mb-3 custom-text">
-        <label for="exampleFormControlTextarea1" class="form-label">Postup</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-    <div class="mb-3 custom-text">
-        <label for="exampleFormControlTextarea1" class="form-label">Dalsi podstatne věci</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-    <div class="custom-text">
-        <a href="home.html" class="btn btn-primary" type="submit">Zveřejnit</a>
-   </div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="mb-3 custom-text">
+            {%csrf_token%}
+            {{ form_recipe|crispy }}
+            <br>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Upoad recipe</button>
+        </div>
+        <!--<div class="mb-3">
+            {{ form_image.image }}
+        </div>-->
+    </form>
 </div>
 {% endblock %}

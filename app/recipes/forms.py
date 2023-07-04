@@ -10,15 +10,19 @@ class RecipeForm(forms.ModelForm):
             "ingredient",
             "instructions",
             "category",
+            "image"
         ]
 
-class IngredientForm(forms.ModelForm):
+class CategoryForm(forms.ModelForm):
     class Meta:
-        model = Ingredient
-        exclude = ["name"]
+        model = Category
+        fields = ["name"]
 
-class ImageForm(forms.ModelForm):
-    pass
+#class ImageForm(forms.ModelForm):
+#    image = forms.ImageField(widget=forms.FileInput(attrs={'class':'form-control-file'}))
+#    class Meta:
+#        model = ImagesRecipes
+#        exclude = ["image"]
 
 class FavoriteRecipeForm(forms.ModelForm):
     class Meta:
