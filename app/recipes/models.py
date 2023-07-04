@@ -14,12 +14,19 @@ class Recipes(models.Model):
     instructions = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     image = models.ImageField(null=True)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    url_image = models.URLField(blank=False, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return "f{self.title} - {self.discription} - {self.created_by.username}"
+        return "f{self.title} - {self.discription}"
     
+class RecipeOwner(models.Model):
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.created_by
+
 #class ImagesRecipes(models.Model):
 #    recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE)
 #    image = models.FileField(upload_to='images/', default='unkown-profile.jpg')
