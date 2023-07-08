@@ -18,11 +18,11 @@ class CategoryForm(forms.ModelForm):
         model = Category
         fields = ["name"]
 
-#class ImageForm(forms.ModelForm):
-#    image = forms.ImageField(widget=forms.FileInput(attrs={'class':'form-control-file'}))
-#    class Meta:
-#        model = ImagesRecipes
-#        exclude = ["image"]
+class ImageForm(forms.ModelForm):
+    image = forms.ImageField(widget=forms.FileInput(attrs={'class':'form-control-file'}))
+    class Meta:
+        model = ImagesRecipes
+        exclude = ["image"]
 
 class FavoriteRecipeForm(forms.ModelForm):
     class Meta:
