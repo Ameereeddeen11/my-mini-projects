@@ -21,7 +21,7 @@ class CategoryForm(forms.ModelForm):
 class ImageForm(forms.ModelForm):
     image = forms.ImageField(widget=forms.FileInput(attrs={'class':'form-control-file'}))
     class Meta:
-        model = ImagesRecipes
+        model = ImagesRecipesOwner
         exclude = ["image"]
 
 class FavoriteRecipeForm(forms.ModelForm):

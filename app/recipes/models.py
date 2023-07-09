@@ -20,17 +20,21 @@ class Recipes(models.Model):
     def __str__(self):
         return "f{self.title} - {self.discription}"
     
-class ImagesRecipes(models.Model):
+class ImagesRecipesOwner(models.Model):
     recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE, null=True)
     image = models.FileField(upload_to='images/', default='unkown-profile.jpg', null=True)
-
-class RecipeOwner(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE, null=True)
-    image_hash = models.ForeignKey(ImagesRecipes, on_delete=models.CASCADE, null=True)
-    
+
     def __str__(self):
-        return self.created_by
+        return self.created_by 
+
+#class RecipeOwner(models.Model):
+#    created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+#    recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE, null=True)
+#    image_hash = models.ForeignKey(ImagesRecipes, on_delete=models.CASCADE, null=True)
+#    
+#    def __str__(self):
+#        return self.created_by
 
 class FavoriteRecipe(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)

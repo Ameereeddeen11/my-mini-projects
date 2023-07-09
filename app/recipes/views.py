@@ -3,6 +3,7 @@ from .models import *
 from .forms import *
 from django.contrib import messages
 import boto3
+import hashlib
 
 def home(response):
     #recipe_pic = ImagesRecipes.objects.all()
@@ -21,7 +22,8 @@ def create(request):
             fr = form_recipe.save()
             fr.save()
             for img in form_image:
-                ImagesRecipes.objects.create(recipe_id=fr, image=img)
+                #hash_sha256_value = hashlib.sha256(img.encode('utf-8')).hexdigest()
+                ImagesRecipesOwner.objects.create(recipe_id=fr, image=img, created_by=request.user)
         return redirect("home")
     else:
         form_recipe = RecipeForm()
