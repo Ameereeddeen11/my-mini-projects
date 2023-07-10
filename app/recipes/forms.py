@@ -10,7 +10,7 @@ class RecipeForm(forms.ModelForm):
             "ingredient",
             "instructions",
             "category",
-            "image"
+            #"image"
         ]
 
 class CategoryForm(forms.ModelForm):
@@ -19,7 +19,9 @@ class CategoryForm(forms.ModelForm):
         fields = ["name"]
 
 class ImageForm(forms.ModelForm):
-    image = forms.ImageField(widget=forms.FileInput(attrs={'class':'form-control-file'}))
+    image = forms.ImageField(
+        widget=forms.FileInput(attrs={'class':'form-control-file'})
+    )
     class Meta:
         model = ImagesRecipesOwner
         exclude = ["image"]

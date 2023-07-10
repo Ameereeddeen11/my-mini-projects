@@ -13,7 +13,7 @@ class Recipes(models.Model):
     ingredient = models.TextField(null=True)
     instructions = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    image = models.ImageField(null=True, upload_to="images/")
+    #image = models.ImageField(null=True, upload_to="images/")
     url_image = models.URLField(blank=False, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -27,14 +27,6 @@ class ImagesRecipesOwner(models.Model):
 
     def __str__(self):
         return self.created_by 
-
-#class RecipeOwner(models.Model):
-#    created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-#    recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE, null=True)
-#    image_hash = models.ForeignKey(ImagesRecipes, on_delete=models.CASCADE, null=True)
-#    
-#    def __str__(self):
-#        return self.created_by
 
 class FavoriteRecipe(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
