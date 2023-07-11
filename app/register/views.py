@@ -10,7 +10,7 @@ def registretion(response):
         form = RegistertionForm()
     return render(response, "register.html", {"form":form})
 
-def user_update(request):
+def user_update(request, id):
     if request.method == "POST":
         profile_form = ProfileForm(request.FILES, request.POST)
         if profile_form.is_valid():

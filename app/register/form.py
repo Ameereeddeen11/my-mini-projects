@@ -20,4 +20,4 @@ class RegistertionForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        field = ["image"]
+        fields = ["profile_pic"]
