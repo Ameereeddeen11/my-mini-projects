@@ -13,3 +13,16 @@ body{
   height: 200px;
   width: 100%;
 }
+
+.custom-text-left {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.custom-text-left-2 {
+  margin-left: 50px;
+}
+
+.custom-text-right{
+  margin-right: 50px;
+}
