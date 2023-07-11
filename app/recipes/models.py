@@ -13,8 +13,6 @@ class Recipes(models.Model):
     ingredient = models.TextField(null=True)
     instructions = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    #image = models.ImageField(null=True, upload_to="images/")
-    url_image = models.URLField(blank=False, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

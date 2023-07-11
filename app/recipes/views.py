@@ -5,9 +5,9 @@ from django.contrib import messages
 
 
 def home(response):
-    #recipe_pic = ImagesRecipes.objects.all()
     recipe = Recipes.objects.all()
     image = ImagesRecipesOwner.objects.all()
+    
     return render(response, "home.html", {
         "images":image,
         "recipe":recipe
@@ -36,3 +36,7 @@ def create(request):
         "form_image" : form_image,
         #"form_category" : form_category
     })
+
+def detail(response, id):
+    image = ImagesRecipesOwner.objects.get(id=id)
+    return render(response, "detail.html", {"image":image})

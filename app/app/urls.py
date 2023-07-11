@@ -24,6 +24,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("recipes.urls")),
     path("register/", v.registretion, name="register"),
+    path("profile_update/", v.user_profile, name="profile_update"),
     path("", include("django.contrib.auth.urls")),
 ]
 

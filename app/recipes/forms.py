@@ -9,8 +9,7 @@ class RecipeForm(forms.ModelForm):
             "discription",
             "ingredient",
             "instructions",
-            "category",
-            #"image"
+            "category"
         ]
 
 class CategoryForm(forms.ModelForm):
