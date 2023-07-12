@@ -20,7 +20,7 @@ class Recipes(models.Model):
     
 class ImagesRecipesOwner(models.Model):
     recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE, null=True)
-    image = models.FileField(upload_to='images/', default='unkown-profile.jpg', null=True)
+    image = models.FileField(upload_to='images/recipe/', default='unkown-profile.jpg', null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):

@@ -2,15 +2,16 @@ from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
 from django.contrib import messages
+from register.models import Profile
 
-
-def home(response):
-    recipe = Recipes.objects.all()
+def home(reqeust):
+    #recipe = Recipes.objects.all()
     image = ImagesRecipesOwner.objects.all()
-    
-    return render(response, "home.html", {
+    profile = Profile.objects.all() # get(profile_pic=reqeust.user)
+    return render(reqeust, "home.html", {
         "images":image,
-        "recipe":recipe
+        "profile":profile,
+        #"recipe":recipe
     })
 
 def create(request):
@@ -23,7 +24,7 @@ def create(request):
             fr.save()
             ImagesRecipesOwner.objects.create(
                 recipe_id=fr, 
-                image= form_image, 
+                image=form_image, 
                 created_by=request.user
             )
         return redirect("home")

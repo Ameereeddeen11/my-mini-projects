@@ -1,12 +1,13 @@
-{% extends "index.html" %}
+{% extends "home.html" %}
 {% block title %}Recipes for {{image.recipe_id.title}}{% endblock %}
 {% block content %}
+<br>
 <div class="container py-5 rounded-4 shadow p-1" style="background-color: rgb(255, 255, 255);">
     <div class="row py-1">
         <div class="col-6">
             <div class="d-flex">
-                <img src="/recipe - simple school app/img/human3.jpg" alt="..." width="38" height="40" class="rounded-circle custom-text-left-2">
-                <a href="#" style="color: black;"><h5 class="mx-2">Jakub</h5></a>
+                <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ image.created_by.profile.profile_pic }}" alt="..." width="38" height="40" class="rounded-circle custom-text-left-2">
+                <a href="#" style="color: black;"><h5 class="mx-2">{{ image.created_by }}</h5></a>
             </div>
         </div>
         <div class="col-6 d-flex justify-content-end">
@@ -23,12 +24,12 @@
     </div>
     <div class="row">
         <div class="col text-center">
-            <h2>Bruschetta s rajčaty</h2>
+            <h2>{{ image.recipe_id.title }}</h2>
         </div>
     </div>
     <div class="row py-4">
         <div class="col">
-            <img class="img-fluid mx-auto d-block rounded-4 fit-cover" src="/recipe - simple school app/img/bruschetta_s_rajcaty.jpg" alt="...">
+            <img class="img-fluid mx-auto d-block rounded-4 " src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/recipe/{{ image.image }}" alt="...">
         </div>
     </div>
     <div class="row py-4">
@@ -70,4 +71,5 @@
         </div>
     </div>
 </div>
+<br>
 {% endblock %}
