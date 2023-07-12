@@ -1,12 +1,13 @@
-{% extends "index.html" %}
+{% extends "home.html" %}
 {% block title %}Recipes for {{image.recipe_id.title}}{% endblock %}
 {% block content %}
+<br>
 <div class="container py-5 rounded-4 shadow p-1" style="background-color: rgb(255, 255, 255);">
     <div class="row py-1">
         <div class="col-6">
             <div class="d-flex">
-                <img src="/recipe - simple school app/img/human3.jpg" alt="..." width="38" height="40" class="rounded-circle custom-text-left-2">
-                <a href="#" style="color: black;"><h5 class="mx-2">Jakub</h5></a>
+                <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ image.created_by.profile.profile_pic }}" alt="..." width="38" height="40" class="rounded-circle custom-text-left-2">
+                <a href="#" style="color: black;"><h5 class="mx-2">{{ image.created_by }}</h5></a>
             </div>
         </div>
         <div class="col-6 d-flex justify-content-end">
@@ -23,38 +24,40 @@
     </div>
     <div class="row">
         <div class="col text-center">
-            <h2>Bruschetta s rajčaty</h2>
+            <h2>{{ image.recipe_id.title }}</h2>
         </div>
     </div>
     <div class="row py-4">
         <div class="col">
-            <img class="img-fluid mx-auto d-block rounded-4 fit-cover" src="/recipe - simple school app/img/bruschetta_s_rajcaty.jpg" alt="...">
+            <img class="img-fluid mx-auto d-block rounded-4 " src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/recipe/{{ image.image }}" alt="...">
         </div>
     </div>
     <div class="row py-4">
         <div class="col">
             <h4 class="custom-text-left">Potřebné suroviny:</h4>
             <ul>
-                <li class="custom-text-left">4 plátky italského chleba (například ciabatta nebo bageta)</li>
-                <li class="custom-text-left">2 středně velká rajčata (nakrájená na malé kostičky)</li>
+                <li class="custom-text-left">{{ image.recipe_id.ingredient }}</li>
+                <!--<li class="custom-text-left">2 středně velká rajčata (nakrájená na malé kostičky)</li>
                 <li class="custom-text-left">2 stroužky česneku (oloupané a nasekané)</li>
                 <li class="custom-text-left">2 lžíce olivového oleje</li>
                 <li class="custom-text-left">1 lžíce čerstvé bazalky (nasekané)</li>
-                <li class="custom-text-left">Sůl a čerstvě mletý černý pepř podle chuti</li>
+                <li class="custom-text-left">Sůl a čerstvě mletý černý pepř podle chuti</li>-->
             </ul>
+            <!--<p></p>-->
         </div>
     </div>
     <div class="row py-4">
         <div class="col container">
             <h4 class="custom-text-left">Postup:</h4>
-            <ol type="1">
+            <!--<ol type="1">
                 <li class="py-2 custom-text-left">Předehřejte troubu: Nastavte troubu na grilovací režim a předehřejte na střední teplotu.</li>
                 <li class="py-2 custom-text-left">Připravte chlebové plátky: Plátky chleba položte na plech a opečte je z obou stran do zlatavé barvy. Můžete je nejdříve potřít trochou olivového oleje, pokud si přejete, aby byly chlebové plátky křupavější.</li>
                 <li class="py-2 custom-text-left">Připravte rajčatovou směs: V míse smíchejte nakrájená rajčata, česnek, olivový olej, nasekanou bazalku, sůl a pepř. Dobře promíchejte, aby se ingredience spojily. Nechte směs odpočinout několik minut, aby se chutě propojily.</li>
                 <li class="py-2 custom-text-left">Namažte chlebové plátky: Na opečené chlebové plátky rovnoměrně rozložte připravenou rajčatovou směs. Můžete také přidat trochu bazalky na ozdobu.</li>
                 <li class="py-2 custom-text-left">Grilujte bruschettu: Položte plech s chlebovými plátky zpět do předehřáté trouby a grilujte je po dobu asi 3-5 minut, dokud rajčata nezačnou lehce hnědnout a chlebové plátky se křupavě neozdobí.</li>
                 <li class="py-2 custom-text-left">Podávání: Hotovou bruschettu s rajčaty můžete podávat okamžitě. Je ideální jako předkrm nebo jako součást lehkého oběda nebo večeře.</li>
-            </ol>
+            </ol>-->
+            <p>{{ image.recipe_id.instructions }}</p>
         </div>
     </div>
     <div class="row py-3">
@@ -68,4 +71,5 @@
         </div>
     </div>
 </div>
+<br>
 {% endblock %}
