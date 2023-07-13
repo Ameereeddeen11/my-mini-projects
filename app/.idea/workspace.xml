@@ -2,8 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73e7348b-1600-4883-ad38-0b43f80862fe" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0002_imagesrecipes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0003_alter_imagesrecipes_image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0004_alter_imagesrecipes_image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0005_alter_imagesrecipes_image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0006_alter_ingredient_name.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0007_remove_recipes_ingredient.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0008_remove_recipeingredient_ingredient_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0009_delete_imagesrecipes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0010_recipes_image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0011_recipes_url_image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0012_remove_recipes_created_by_recipeowner.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0013_alter_recipeowner_created_by_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0014_imagesrecipesowner_remove_recipeowner_created_by_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0015_remove_recipes_image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0016_remove_recipes_url_image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/0017_alter_imagesrecipesowner_image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/migrations/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/recipes/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/register/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/register/migrations/0002_alter_profile_profile_pic.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/register/migrations/__init__.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +51,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Amir/Desktop/Python/django/my mini projects"
+    "last_opened_file_path": "C:/Users/Amir/Desktop/Python/django/my mini projects/app"
   }
 }]]></component>
   <component name="RunManager">
@@ -65,6 +89,7 @@
       <updated>1688202672251</updated>
       <workItem from="1688202673681" duration="3956000" />
       <workItem from="1688288243054" duration="28000" />
+      <workItem from="1689271476476" duration="919000" />
     </task>
     <servers />
   </component>
