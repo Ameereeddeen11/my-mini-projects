@@ -2,9 +2,9 @@
 {% block title %}Recipes{% endblock %}
 {% block navbar %}
 {% if user.is_authenticated %}
-        <nav class="navbar container mb-1 bg-body shadow p-1 rounded" style="background-color: e3f2fd;">
+        <nav class="navbar container mb-1 bg-body shadow p-1 rounded-5" style="background-color: e3f2fd;">
             <div class="container">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/home/">
                     <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/logo.png" alt="Logo" width="90" height="90" class="d-inline-block text-center">
                     Recipes
                 </a>
@@ -29,7 +29,7 @@
     {% else %}
         <nav class="navbar container mb-1 bg-body shadow p-1 rounded" style="background-color: e3f2fd;">
             <div class="container">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/home/">
                     <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/logo.png" alt="Logo" width="90" height="90" class="d-inline-block text-center">
                     Recipes
                 </a>
@@ -62,7 +62,7 @@
                 <div class="card mb-3 shadow p-2" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-md-12">
-                            <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/recipe/{{ recipes.image }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
+                            <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ recipes.image }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
                         </div>
                         <div class="col-md-12">
                             <div class="card-body">
