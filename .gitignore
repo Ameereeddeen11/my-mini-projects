@@ -1,11 +1,15 @@
 # ignore all .log files
 *.log
 
-#ignore all folder temp
+# ignore all folder temp
 temp/
 
-#ignore settings.py from app project
+# ignore settings.py from app project
 app/app/settings.py
 
-#ignore settings.py from awss3app
+# ignore settings.py from awss3app
 awss3app/awss3app/settings.py
+
+# ignore idea program
+app/.idea
+.idea
