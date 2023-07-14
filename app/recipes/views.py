@@ -43,5 +43,4 @@ def detail(response, id):
     return render(response, "detail.html", {"image":image})
 
 def account_settings(request):
-    image = ImagesRecipesOwner.objects.all()
-    return render(request, "account-settings.html", {"account":image})
+    pass
