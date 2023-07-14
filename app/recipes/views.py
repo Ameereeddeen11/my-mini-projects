@@ -41,3 +41,7 @@ def create(request):
 def detail(response, id):
     image = ImagesRecipesOwner.objects.get(id=id)
     return render(response, "detail.html", {"image":image})
+
+def account_settings(request):
+    image = ImagesRecipesOwner.objects.all()
+    return render(request, "account-settings.html", {"account":image})
