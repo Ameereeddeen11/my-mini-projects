@@ -13,3 +13,7 @@ awss3app/awss3app/settings.py
 # ignore idea program
 app/.idea
 .idea
+
+# ignore __pycache__
+app/recipes/__pycache__/
+app/app/__pycache__/

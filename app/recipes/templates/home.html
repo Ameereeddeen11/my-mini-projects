@@ -1,5 +1,58 @@
 {% extends "index.html" %}
 {% block title %}Recipes{% endblock %}
+<<<<<<< HEAD
+=======
+{% block navbar %}
+{% if user.is_authenticated %}
+        <nav class="navbar container mb-1 bg-body shadow p-1 rounded-5" style="background-color: e3f2fd;">
+            <div class="container">
+                <a class="navbar-brand" href="/home/">
+                    <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/logo.png" alt="Logo" width="90" height="90" class="d-inline-block text-center">
+                    Recipes
+                </a>
+                <div class="dropdown">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria="false">
+                        {% if user.profile.profile_pic %}
+                            <img src= "https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ user.profile.profile_pic }}" alt="mdo" width="34" height="32" class="rounded-circle"> 
+                        {% else %}
+                        <img src= "https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/unkown-profile.jpg" alt="mdo" width="34" height="32" class="rounded-circle"> 
+                        {% endif %}
+                    </a>
+                    <ul class="dropdown-menu text-small dropdown-menu-end">
+                        <li><a class="dropdown-item" href="/create/">Novy resept</a></li>
+                        <li><a class="dropdown-item" href="setting_profile.html">Nastaveni učtu</a></li>
+                        <li><a class="dropdown-item" href="profile.html">Učet</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/logout/">Odhlasit</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    {% else %}
+        <nav class="navbar container mb-1 bg-body shadow p-1 rounded" style="background-color: e3f2fd;">
+            <div class="container">
+                <a class="navbar-brand" href="/home/">
+                    <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/logo.png" alt="Logo" width="90" height="90" class="d-inline-block text-center">
+                    Recipes
+                </a>
+                <div class="dropdown">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg> 
+                    </a>
+                    <ul class="dropdown-menu text-small">
+                        <li><a class="dropdown-item" href="/login/">Novy resept</a></li>
+                        <li><a class="dropdown-item" href="/login/">Login</a></li>
+                        <li><a class="dropdown-item" href="/register/">Sign in</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    {% endif %}
+{% endblock %}
+>>>>>>> main
 {% block content %}
 <form class="container py-5 d-flex" role="search">
     <input class="form-control me-5" type="search" placeholder="Search" aria-label="Search">
@@ -12,7 +65,7 @@
                 <div class="card mb-3 shadow p-2" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-md-12">
-                            <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/recipe/{{ recipes.image }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
+                            <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ recipes.image }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
                         </div>
                         <div class="col-md-12">
                             <div class="card-body">

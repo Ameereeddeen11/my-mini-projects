@@ -29,21 +29,21 @@
     </div>
     <div class="row py-4">
         <div class="col">
-            <img class="img-fluid mx-auto d-block rounded-4 " src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/recipe/{{ image.image }}" alt="...">
+            <img class="img-fluid mx-auto d-block rounded-4 " src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ image.image }}" alt="...">
         </div>
     </div>
     <div class="row py-4">
         <div class="col">
             <h4 class="custom-text-left">Potřebné suroviny:</h4>
-            <ul>
+            <!--<ul>
                 <li class="custom-text-left">{{ image.recipe_id.ingredient }}</li>
-                <!--<li class="custom-text-left">2 středně velká rajčata (nakrájená na malé kostičky)</li>
+                <li class="custom-text-left">2 středně velká rajčata (nakrájená na malé kostičky)</li>
                 <li class="custom-text-left">2 stroužky česneku (oloupané a nasekané)</li>
                 <li class="custom-text-left">2 lžíce olivového oleje</li>
                 <li class="custom-text-left">1 lžíce čerstvé bazalky (nasekané)</li>
-                <li class="custom-text-left">Sůl a čerstvě mletý černý pepř podle chuti</li>-->
-            </ul>
-            <!--<p></p>-->
+                <li class="custom-text-left">Sůl a čerstvě mletý černý pepř podle chuti</li>
+            </ul>-->
+            <p class="custom-text-left">{{ image.recipe_id.ingredient }}</p>
         </div>
     </div>
     <div class="row py-4">
@@ -57,7 +57,7 @@
                 <li class="py-2 custom-text-left">Grilujte bruschettu: Položte plech s chlebovými plátky zpět do předehřáté trouby a grilujte je po dobu asi 3-5 minut, dokud rajčata nezačnou lehce hnědnout a chlebové plátky se křupavě neozdobí.</li>
                 <li class="py-2 custom-text-left">Podávání: Hotovou bruschettu s rajčaty můžete podávat okamžitě. Je ideální jako předkrm nebo jako součást lehkého oběda nebo večeře.</li>
             </ol>-->
-            <p>{{ image.recipe_id.instructions }}</p>
+            <p class="py-2 custom-text-left">{{ image.recipe_id.instructions }}</p>
         </div>
     </div>
     <div class="row py-3">
