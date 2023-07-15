@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import *
+#from .models import *
 from .forms import *
-from django.contrib import messages
+#from django.contrib import messages
 from register.models import Profile
 from register.form import ProfileForm, UpdateUserForm
 from django.contrib.auth.decorators import login_required
@@ -61,3 +61,7 @@ def account_settings(request):
         "form_profile": form_profile,
         "form_updateuser": form_updateuser
     })
+
+def account(request):
+    image = ImagesRecipesOwner.objects.all()
+    return render(request, "account.html", {"image": image})

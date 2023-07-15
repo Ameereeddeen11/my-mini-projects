@@ -1,23 +1,19 @@
 {% extends "home.html" %}
 {% block content %}
-    {% if user.is_authenticated %}
-        {% for profile in user.account %}
-            <div class="card mb-3 shadow p-2" style="max-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-12">
-                        <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ profile.image }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card-body">
-                            <h5 class="card-title">{{profile.recipe_id.title}}</h5>
-                            <p class="card-text">Tento těstovinový pokrm s bohatou omáčkou je dokonalým spojením sytých chutí a jednoduché přípravy, která vás zaručeně potěší a zahřeje.</p>
-                            <a href="/detail/{{ profile.id }}/" class="btn btn-primary">Recept</a>
-                        </div>
+    {% for profile in user.image %}
+        <div class="card mb-3 shadow p-2" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ profile.image }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
+                </div>
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <h5 class="card-title">{{profile.recipe_id.title}}</h5>
+                        <p class="card-text">Tento těstovinový pokrm s bohatou omáčkou je dokonalým spojením sytých chutí a jednoduché přípravy, která vás zaručeně potěší a zahřeje.</p>
+                        <a href="/detail/{{ profile.id }}/" class="btn btn-primary">Recept</a>
                     </div>
                 </div>
             </div>
-        {% endfor %}
-    {% else %}
-        {% include "registration/templete/register.html" %}
-    {% endif %}
+        </div>
+    {% endfor %}
 {% endblock %}
