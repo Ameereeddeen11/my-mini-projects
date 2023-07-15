@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, related_name="recept")
-    profile_pic = models.ImageField(upload_to="images/profile-pic/")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    profile_pic = models.ImageField(upload_to="images/profile-pic/", null=True)
     #follow = models.ManyToManyField(User)
+    bio_user = models.TextField(max_length=200, null=True)

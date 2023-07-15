@@ -5,9 +5,6 @@ from .models import Profile
 
 class RegistertionForm(UserCreationForm):
     email = forms.EmailField()
-    image = forms.ImageField(
-        widget=forms.FileInput(attrs={'class':'form-control-file'})
-    )
     class Meta:
         model = User
         fields = [
@@ -20,4 +17,16 @@ class RegistertionForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ["profile_pic"]
+        fields = [
+            "profile_pic",
+            "bio_user"
+        ]
+
+class UpdateUserForm(forms.ModelForm):
+    email = forms.EmailField()
+    class Meta:
+        model = User
+        fields = [
+            "username",
+            "email"
+        ]

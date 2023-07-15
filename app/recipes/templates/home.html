@@ -10,11 +10,11 @@
                 </a>
                 <div class="dropdown">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria="false">
-                        {% if user.profile.profile_pic %}
+
                             <img src= "https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ user.profile.profile_pic }}" alt="mdo" width="34" height="32" class="rounded-circle"> 
-                        {% else %}
-                        <img src= "https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/unkown-profile.jpg" alt="mdo" width="34" height="32" class="rounded-circle"> 
-                        {% endif %}
+
+                            <!--<img src= "https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/profile-pic/unkown-profile.jpg" alt="mdo" width="34" height="32" class="rounded-circle">-->
+
                     </a>
                     <ul class="dropdown-menu text-small dropdown-menu-end">
                         <li><a class="dropdown-item" href="/create/">Novy resept</a></li>
