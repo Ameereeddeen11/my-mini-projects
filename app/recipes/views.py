@@ -45,7 +45,7 @@ def detail(response, id):
     image = ImagesRecipesOwner.objects.get(id=id)
     return render(response, "detail.html", {"image": image})
 
-@login_required
+@login_required()
 def account_settings(request):
     if request.method == "POST":
         form_updateuser = UpdateUserForm(request.POST)
@@ -63,8 +63,11 @@ def account_settings(request):
     })
 @login_required()
 def account(request):
-    image = ImagesRecipesOwner.objects.all()
-    return render(request, "account.html", {"image": image})
+    image = request.user.imagesrecipesowner_set.all()
+    return render(request, "account.html", {"profile": image})
+
 @login_required()
 def edit(request, id):
     return render(request, "edit.html", {})
+
+
