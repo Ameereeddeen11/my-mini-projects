@@ -1,0 +1,22 @@
+{% extends "home.html" %}
+{% block title %}{{ delete_recipe.title }}{% endblock %}
+{% block content %}
+    <form action="{% url 'delete' delete_recipe.id %}" method="post">
+        <section class="vh-100">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                            <div class="card-body p-5 text-center">
+                            {% csrf_token %}
+                            <p>Are you sure you want to detele "{{delete_recipe.title}}"</p>
+                            <a href="/account/"><button class="btn btn-secondary" type="button">Cancel</button></a>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+{% endblock %}

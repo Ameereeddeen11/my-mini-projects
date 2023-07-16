@@ -8,4 +8,5 @@ urlpatterns =[
     path("account-settings/", views.account_settings, name="account-settings"),
     path("account/", views.account, name="account"),
     path("edit/<int:id>/", views.edit, name="edit"),
+    path("delete/<int:id>/", views.delete, name="delete"),
 ]

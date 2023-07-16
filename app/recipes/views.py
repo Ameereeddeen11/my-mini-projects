@@ -64,6 +64,8 @@ def account_settings(request):
 @login_required()
 def account(request):
     image = request.user.imagesrecipesowner_set.all()
+    if request.method == "POST":
+        return redirect("/account/")
     return render(request, "account.html", {"profile": image})
 
 @login_required()
@@ -86,6 +88,18 @@ def edit(request, id):
         "recipe_form": recipe_form,
         "image": image,
         "image_form": image_form
+    })
+
+def delete(request, id):
+    delete_recipe = Recipes.objects.get(id=id)
+    delete_image = ImagesRecipesOwner.objects.get(recipe_id=id)
+    if request.method == "POST":
+        delete_recipe.delete()
+        delete_image.delete()
+        return redirect("/account/")
+    return render(request, "delete.html", {
+        "delete_recipe": delete_recipe,
+        "delete_image": delete_image
     })
 
 
