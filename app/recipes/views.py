@@ -7,15 +7,15 @@ from register.form import ProfileForm, UpdateUserForm
 from django.contrib.auth.decorators import login_required
 
 
-def home(reqeust):
+def home(response):
     image = ImagesRecipesOwner.objects.all()
     profile = Profile.objects.all()
-    return render(reqeust, "home.html", {
+    return render(response, "home.html", {
         "images": image,
         "profile": profile
     })
 
-
+@login_required()
 def create(request):
     if request.method == "POST" and request.FILES.get('image'):
         form_recipe = RecipeForm(request.POST, request.FILES)
@@ -61,7 +61,10 @@ def account_settings(request):
         "form_profile": form_profile,
         "form_updateuser": form_updateuser
     })
-
+@login_required()
 def account(request):
     image = ImagesRecipesOwner.objects.all()
     return render(request, "account.html", {"image": image})
+@login_required()
+def edit(request, id):
+    return render(request, "edit.html", {})
