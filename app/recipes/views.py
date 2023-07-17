@@ -48,14 +48,14 @@ def detail(response, id):
 @login_required()
 def account_settings(request):
     if request.method == "POST":
-        form_updateuser = UpdateUserForm(request.POST)
+        form_updateuser = UpdateUserForm(request.POST, instance=request.user)
         form_profile = ProfileForm(request.FILES, request.POST, instance=request.user.profile)
         if form_profile.is_valid() and form_updateuser.is_valid():
             form_profile.save()
             form_updateuser.save()
             return redirect("/account-settings/")
     else:
-        form_updateuser = UpdateUserForm()
+        form_updateuser = UpdateUserForm(instance=request.user)
         form_profile = ProfileForm(instance=request.user.profile)
     return render(request, "account-settings.html", {
         "form_profile": form_profile,

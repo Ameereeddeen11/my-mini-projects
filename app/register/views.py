@@ -1,14 +1,22 @@
 from django.shortcuts import render
-from .form import RegistertionForm, ProfileForm
+from .form import RegistertionForm, ProfileForm, Profile
+from recipes.models import ImagesRecipesOwner
 
-def registretion(response):
-    if response.method == "POST":
-        form = RegistertionForm(response.POST)
-        if form.is_valid():
+def registretion(request):
+    if request.method == "POST":
+        form = RegistertionForm(request.POST)
+        profile_form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid() and profile_form.is_valid():
             form.save()
+            profile_form.save(commit=False)
+
     else:
         form = RegistertionForm()
-    return render(response, "register.html", {"form":form})
+        profile_form = ProfileForm()
+    return render(request, "register.html", {
+        "form":form,
+        "profile": profile_form
+    })
 
 def user_update(request, id):
     if request.method == "POST":
