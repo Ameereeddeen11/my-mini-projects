@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-#from .models import *
+from .models import *
 from .forms import *
-#from django.contrib import messages
+from django.contrib import messages
 from register.models import Profile
 from register.form import ProfileForm, UpdateUserForm
 from django.contrib.auth.decorators import login_required
@@ -49,7 +49,7 @@ def detail(response, id):
 def account_settings(request):
     if request.method == "POST":
         form_updateuser = UpdateUserForm(request.POST, instance=request.user)
-        form_profile = ProfileForm(request.FILES, request.POST, instance=request.user.profile)
+        form_profile = ProfileForm(request.FILES, request.POST, instance=request.user)
         if form_profile.is_valid() and form_updateuser.is_valid():
             form_profile.save()
             form_updateuser.save()
