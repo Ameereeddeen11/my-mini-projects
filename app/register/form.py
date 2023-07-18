@@ -13,6 +13,7 @@ class RegistertionForm(UserCreationForm):
             "password1",
             "password2"
         ]
+    profile_pic = forms.ImageField(required=False)
 
 class ProfileForm(forms.ModelForm):
     profile_pic = forms.ImageField(required=False)
