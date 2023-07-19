@@ -13,9 +13,10 @@ recipe/app/migrations/
 recipe/register/migrations/
 
 # ignore __pycache__ 
-recipe/recipes/__pycache__/
+recipe/recipe/__pycache__/
 recipe/app/__pycache__/
 recipe/register/__pycache__/
 
 # ignore requirements
 recipe/requirements/
+
