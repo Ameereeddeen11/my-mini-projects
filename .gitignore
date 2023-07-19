@@ -4,16 +4,18 @@
 # ignore all folder temp
 temp/
 
-# ignore settings.py from app project
-app/app/settings.py
-
-# ignore settings.py from awss3app
-awss3app/awss3app/settings.py
-
 # ignore idea program
-app/.idea
-.idea
+recipe/.idea
+.idea/
 
-# ignore __pycache__
-app/recipes/__pycache__/
-app/app/__pycache__/
+# ignore migrations
+recipe/app/migrations/
+recipe/register/migrations/
+
+# ignore __pycache__ 
+recipe/recipes/__pycache__/
+recipe/app/__pycache__/
+recipe/register/__pycache__/
+
+# ignore requirements
+recipe/requirements/
