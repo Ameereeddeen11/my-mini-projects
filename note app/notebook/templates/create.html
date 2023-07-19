@@ -1,0 +1,13 @@
+{% extends 'home.html' %}
+{% block content2 %}
+    <form action="" method="post">
+        <div class="text-center">
+            <br>
+            {% csrf_token %}
+            {% load crispy_forms_tags %}
+            {{form|crispy}}
+            <br>
+            <button class="btn btn-secondary" type="submit">Create</button>
+        </div>
+    </form>
+{% endblock %}
