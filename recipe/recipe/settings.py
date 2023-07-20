@@ -149,8 +149,8 @@ MEDIA_URL = 'images/'
 MEDIA_ROOT = BASE_DIR / 'images/'
 
 # Login and logout urls
-LOGIN_REDIRECT_URL = "/home/"
-LOGOUT_REDIRECT_URL = "/home/"
+LOGIN_REDIRECT_URL = "/recipe/"
+LOGOUT_REDIRECT_URL = "/recipe/"
 
 # AWS S3 access
 AWS_STORAGE_BUCKET_NAME = 'myminiprojectrecipe'
