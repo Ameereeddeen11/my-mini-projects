@@ -12,6 +12,7 @@
                             <div class="form-outline mb-4">
                                 {%csrf_token%}
                                 {{ form|crispy }}
+                                {{ profile|crispy }}
                             </div>
                             <p class="py-4">Profile picture and bio anen't necessary</p>
                             <!--Checkbox--> 
