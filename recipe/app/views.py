@@ -42,7 +42,7 @@ def details(response, id):
 @login_required()
 def edit(request, id):
     recipe = Recipes.objects.get(id=id)
-    image = ImagesRecipesOwner.objects.get(recipe_id=recipe)
+    image = ImagesRecipesOwner.objects.get(recipe_id=id)
     if request.user.image.all():
         if request.method == "POST":
             recipe_form = RecipeForm(request.POST, instance=recipe)
