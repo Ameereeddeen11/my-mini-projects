@@ -9,7 +9,7 @@ def home(response):
     recipe = ImagesRecipesOwner.objects.all()
     return render(response, "home.html", {
         "profile":profile,
-        "recipe": recipe
+        "images": recipe
     })
 
 @login_required()
@@ -19,10 +19,11 @@ def create(request):
         recipe = RecipeForm(request.POST)
         if recipe.is_valid():
             recipe.save()
+            id_recipe = recipe.instance
             ImagesRecipesOwner.objects.create(
-                recipe_id = recipe,
+                recipe_id = id_recipe,
                 image = image,
-                create_by = request.user
+                created_by = request.user
             )
         return redirect("home")
     else:
@@ -32,6 +33,10 @@ def create(request):
         "form_recipe": recipe,
         "form_image": image
     })
+
+def details(response, id):
+    image = ImagesRecipesOwner.objects.get(id=id)
+    return render(response, "detail.html", {"image":image})
 
 @login_required()
 def edit(request, id):
