@@ -38,24 +38,28 @@ def details(response, id):
     image = ImagesRecipesOwner.objects.get(id=id)
     return render(response, "detail.html", {"image":image})
 
+
 @login_required()
 def edit(request, id):
     recipe = Recipes.objects.get(id=id)
-    image = ImagesRecipesOwner.objects.get(recipe_id=id)
-    if request.method == "POST":
-        recipe_form = RecipeForm(request.POST, instance=recipe)
-        image_form = ImageForm(request.FILES, instance=image)
-        if recipe_form.is_valid() and image_form.is_valid():
-            recipe_form.save()
-            image_form.save()
-            return redirect("/home/")
+    image = ImagesRecipesOwner.objects.get(recipe_id=recipe)
+    if request.user.image.all():
+        if request.method == "POST":
+            recipe_form = RecipeForm(request.POST, instance=recipe)
+            image_form = ImageForm(request.FILES, instance=image)
+            if recipe_form.is_valid() and image_form.is_valid():
+                recipe_form.save()
+                image_form.save()
+                return redirect("/home/")
+        else:
+            recipe = Recipes.objects.get(id=id)
+            recipe_form = RecipeForm(instance=recipe)
+            image = ImagesRecipesOwner.objects.get(recipe_id=id)
+            image_form = ImageForm(instance=image)
+        return render(request, "edit.html", {
+            "recipe_form": recipe_form,
+            "image": image,
+            "image_form": image_form
+        })
     else:
-        recipe = Recipes.objects.get(id=id)
-        recipe_form = RecipeForm(instance=recipe)
-        image = ImagesRecipesOwner.objects.get(recipe_id=id)
-        image_form = ImageForm(instance=image)
-    return render(request, "edit.html", {
-        "recipe_form": recipe_form,
-        "image": image,
-        "image_form": image_form
-    })
+        return render(request, "home.html")
