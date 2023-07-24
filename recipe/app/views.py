@@ -41,10 +41,10 @@ def details(response, id):
 
 @login_required()
 def edit(request, id):
-    recipe = Recipes.objects.get(id=id)
-    image = ImagesRecipesOwner.objects.get(recipe_id=id)
     if request.user.image.all():
         if request.method == "POST":
+            recipe = Recipes.objects.get(id=id)
+            image = ImagesRecipesOwner.objects.get(recipe_id=id)
             recipe_form = RecipeForm(request.POST, instance=recipe)
             image_form = ImageForm(request.FILES, instance=image)
             if recipe_form.is_valid() and image_form.is_valid():
@@ -54,11 +54,11 @@ def edit(request, id):
         else:
             recipe = Recipes.objects.get(id=id)
             recipe_form = RecipeForm(instance=recipe)
-            image = ImagesRecipesOwner.objects.get(recipe_id=id)
+            image = ImagesRecipesOwner.objects.get(recipe_id=recipe)
             image_form = ImageForm(instance=image)
         return render(request, "edit.html", {
             "recipe_form": recipe_form,
-            "image": image,
+            "default_image": image,
             "image_form": image_form
         })
     else:
