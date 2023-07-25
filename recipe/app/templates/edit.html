@@ -1,5 +1,5 @@
 {% extends "home.html" %}
-{% block title %}Edit {{ recipe.name }}{% endblock %}
+{% block title %}Edit {{ recipe.title }}{% endblock %}
 {% block content %}
     <br>
     <form method="post" enctype="multipart/form-data">
@@ -12,7 +12,7 @@
                     {% csrf_token %}
                     {% load crispy_forms_tags %}
                     {{ recipe_form|crispy }}
-                    {{ image_form.image }}
+                    {{ image_form|crispy }}
                 </div>
                 <div class="custom-text">
                     <button class="btn btn-primary" type="submit">Update</button>

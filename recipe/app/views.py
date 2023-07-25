@@ -41,25 +41,33 @@ def details(response, id):
 
 @login_required()
 def edit(request, id):
-    if request.user.image.all():
-        if request.method == "POST":
-            recipe = Recipes.objects.get(id=id)
-            image = ImagesRecipesOwner.objects.get(recipe_id=id)
-            recipe_form = RecipeForm(request.POST, instance=recipe)
-            image_form = ImageForm(request.FILES, instance=image)
-            if recipe_form.is_valid() and image_form.is_valid():
-                recipe_form.save()
-                image_form.save()
-                return redirect("/home/")
-        else:
-            recipe = Recipes.objects.get(id=id)
-            recipe_form = RecipeForm(instance=recipe)
-            image = ImagesRecipesOwner.objects.get(recipe_id=recipe)
-            image_form = ImageForm(instance=image)
-        return render(request, "edit.html", {
-            "recipe_form": recipe_form,
-            "default_image": image,
-            "image_form": image_form
-        })
+    #if request.user.image.all():
+    recipe = Recipes.objects.get(id=id)
+    image = ImagesRecipesOwner.objects.get(recipe_id=recipe)
+    if request.method == "POST":
+        recipe_form = RecipeForm(request.POST, instance=recipe)
+        image_form = request.FILES.get("image") or None
+        if recipe_form.is_valid():
+            recipe_form.save()
+            if image_form:
+                image.delete()
+                id_recipe = recipe_form.instance
+                ImagesRecipesOwner.objects.create(
+                    recipe_id=id_recipe,
+                    image=image_form,
+                    created_by=request.user
+                )
+        return redirect("/recipe/")
     else:
-        return render(request, "home.html")
+        recipe = Recipes.objects.get(id=id)
+        recipe_form = RecipeForm(instance=recipe)
+        image = ImagesRecipesOwner.objects.get(recipe_id=recipe)
+        image_form = ImageForm(instance=image)
+    return render(request, "edit.html", {
+        "recipe_form": recipe_form,
+        "default_image": image,
+        "image_form": image_form,
+        "recipe": recipe
+    })
+    #else:
+    #    return render(request, "home.html")

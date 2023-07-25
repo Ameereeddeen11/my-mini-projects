@@ -21,9 +21,10 @@ class ImageForm(forms.ModelForm):
     image = forms.ImageField(
         widget=forms.FileInput(attrs={'class':'form-control-file'})
     )
+    required = False
     class Meta:
         model = ImagesRecipesOwner
-        exclude = ["image"]
+        fields = ["image",]
 
 class FavoriteRecipeForm(forms.ModelForm):
     class Meta:
