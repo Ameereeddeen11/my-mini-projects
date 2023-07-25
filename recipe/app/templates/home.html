@@ -20,7 +20,7 @@
                     <ul class="dropdown-menu text-small dropdown-menu-end">
                         <li><a class="dropdown-item" href="/recipe/create/">Novy resept</a></li>
                         <li><a class="dropdown-item" href="/profile_update/">Nastaveni učtu</a></li>
-                        <li><a class="dropdown-item" href="/account/">Učet</a></li>
+                        <li><a class="dropdown-item" href="/recipe/account/">Učet</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/logout/">Odhlasit</a></li>
                     </ul>
@@ -45,8 +45,8 @@
     </form>
     <div class="container py-5">
         <div class="row">
-            <div class="col">
-                {% for recipes in images %}
+            {% for recipes in images %}
+                <div class="col">
                     <div class="card mb-3 shadow p-2" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-12">
@@ -61,8 +61,8 @@
                             </div>
                         </div>
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
