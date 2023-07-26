@@ -36,7 +36,8 @@ def create(request):
 
 def details(response, id):
     image = ImagesRecipesOwner.objects.get(id=id)
-    return render(response, "detail.html", {"image":image})
+    return render(response, "detail.html", {"image": image})
+
 @login_required()
 def account_page(request):
     image = request.user.image.all()
@@ -77,7 +78,7 @@ def edit(request, id):
 @login_required()
 def delete(request, id):
     delete_recipe = Recipes.objects.get(id=id)
-    delete_image = ImagesRecipesOwner.objects.get(recipe_id=id)
+    delete_image = ImagesRecipesOwner.objects.get(recipe_id=delete_recipe)
     if request.method == "POST":
         delete_recipe.delete()
         delete_image.delete()

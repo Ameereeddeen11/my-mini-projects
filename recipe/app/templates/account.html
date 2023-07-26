@@ -13,9 +13,9 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{recipes.recipe_id.title}}</h5>
                                 <p class="card-text">Tento těstovinový pokrm s bohatou omáčkou je dokonalým spojením sytých chutí a jednoduché přípravy, která vás zaručeně potěší a zahřeje.</p>
-                                <a href="/recipe/detail/{{ recipes.id }}/" class="btn btn-primary">Recipe</a>
-                                <a href="/recipe/edit/{{ recipes.id }}/" class="btn btn-primary">Edit</a>
-                                <a href="/recipe/delete/{{ recipes.recipe_id }}/" class="btn btn-danger">Delete</a>
+                                <a href="/recipe/detail/{{ recipes.id }}" class="btn btn-primary">Recipe</a>
+                                <a href="/recipe/edit/{{ recipes.recipe_id.id }}" class="btn btn-primary">Edit</a>
+                                <a href="/recipe/delete/{{ recipes.recipe_id.id }}" class="btn btn-danger">Delete</a>
                             </div>
                         </div>
                     </div>
