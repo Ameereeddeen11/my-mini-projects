@@ -9,7 +9,9 @@ class RecipeForm(forms.ModelForm):
             "discription",
             "ingredient",
             "instructions",
-            "category"
+            "category",
+            "takes_time",
+            "for_how_many_people"
         ]
 
 class CategoryForm(forms.ModelForm):
