@@ -15,6 +15,8 @@ class Recipes(models.Model):
     ingredient = models.TextField(null=True)
     instructions = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    takes_time = models.CharField(max_length=80, null=True)
+    for_how_many_people = models.IntegerField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -45,3 +47,10 @@ class Rating(models.Model):
 
     def __str__(self):
         return f'{self.user_id.username} - {self.recipe_id.title({self.score})}'
+
+class Commet(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    commet = models.TextField()
+
+    def __str__(self):
+        return f'{self.user_id.username} - {self.commet}'
