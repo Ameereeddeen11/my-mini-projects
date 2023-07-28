@@ -29,7 +29,7 @@ class ImagesRecipesOwner(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="image")
 
     def __str__(self):
-        return self.created_by
+        return f"{self.created_by} - {self.image}"
 
 
 class FavoriteRecipe(models.Model):

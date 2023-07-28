@@ -7,23 +7,21 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     profile = Profile.objects.all()
     recipe = ImagesRecipesOwner.objects.all()
-    if request.method == "POST":
-        search = request.POST["search"]
-        post = profile.objects.filter(title__contains=search)
-        return render(request, "home.html", {
-            "profile":profile,
-            "images": recipe,
-            "search":search,
-            "post": post
-        })
-    else:
-       return render(request, "home.html", {
-           "profile": profile,
-           "images": recipe
-       })
+    return render(request, "home.html", {
+        "profile":profile,
+        "images": recipe
+    })
 
 def search_recipe(request):
-    return render(request, "search_recipe.html", {})
+    if request.method == "POST":
+        searched = request.POST["search"]
+        post = Recipes.objects.filter(title__contains=searched)
+        return render(request, "search_recipe.html", {
+            "search": searched,
+            "post": post,
+        })
+    else:
+        return redirect("/recipe/")
 
 @login_required()
 def create(request):

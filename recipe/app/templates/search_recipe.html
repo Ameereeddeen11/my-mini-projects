@@ -1,0 +1,32 @@
+{% extends "home.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    {% if search %}
+        <div class="container py-5">
+            <div class="row">
+                {% for recipes in post %}
+                    <div class="col">
+                        <div class="card mb-3 shadow p-2" style="max-width: 540px;">
+                            <div class="row g-0">
+                                <div class="col-md-12">
+                                    {% for images in recipes.imagesrecipesowner_set.all %}
+                                        <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ images.image }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
+                                    {% endfor %}
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{recipes.title}}</h5>
+                                        <p class="card-text">Tento těstovinový pokrm s bohatou omáčkou je dokonalým spojením sytých chutí a jednoduché přípravy, která vás zaručeně potěší a zahřeje.</p>
+                                        <a href="/recipe/detail/{{ recipes.id }}" class="btn btn-primary">Recipe</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <h1>You forgot to search</h1>
+    {% endif %}
+{% endblock %}

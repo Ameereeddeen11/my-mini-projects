@@ -40,8 +40,9 @@
 {% endblock %}
 
 {% block search_box %}
-    <form class="container py-5 d-flex" role="search" method="post" action="">
-        <input class="form-control me-5" type="search" placeholder="Search" aria-label="Search">
+    <form class="container py-5 d-flex" role="search" method="post" action="{% url 'search' %}">
+        {% csrf_token %}
+        <input class="form-control me-5" type="search" placeholder="Search" aria-label="Search" name="search">
         <button class="btn btn-primary" type="submit">Hledani</button>
     </form>
 {% endblock %}
