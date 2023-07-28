@@ -4,13 +4,26 @@ from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
 
-def home(response):
+def home(request):
     profile = Profile.objects.all()
     recipe = ImagesRecipesOwner.objects.all()
-    return render(response, "home.html", {
-        "profile":profile,
-        "images": recipe
-    })
+    if request.method == "POST":
+        search = request.POST["search"]
+        post = profile.objects.filter(title__contains=search)
+        return render(request, "home.html", {
+            "profile":profile,
+            "images": recipe,
+            "search":search,
+            "post": post
+        })
+    else:
+       return render(request, "home.html", {
+           "profile": profile,
+           "images": recipe
+       })
+
+def search_recipe(request):
+    return render(request, "search_recipe.html", {})
 
 @login_required()
 def create(request):
