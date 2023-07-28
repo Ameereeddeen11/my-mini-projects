@@ -13,8 +13,8 @@ def home(request):
     })
 
 def search_recipe(request):
-    if request.method == "POST":
-        searched = request.POST["search"]
+    if request.method == "GET":
+        searched = request.GET["search"]
         post = Recipes.objects.filter(title__contains=searched)
         return render(request, "search_recipe.html", {
             "search": searched,
