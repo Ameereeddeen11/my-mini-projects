@@ -14,7 +14,7 @@ from pathlib import Path
 import os, json
 
 # Import json file
-file_path = open('C:/Users/Amir/Desktop/Python/bot/aws_s3.json', 'r')
+file_path = open('data/aws_s3.json', 'r')
 token = json.load(file_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

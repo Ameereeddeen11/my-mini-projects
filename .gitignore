@@ -1,9 +1,3 @@
-# ignore all .log files
-*.log
-
-# ignore all folder temp
-temp/
-
 # ignore idea program
 recipe/.idea
 .idea/
@@ -20,3 +14,5 @@ recipe/register/__pycache__/
 # ignore requirements
 recipe/requirements/
 
+# ignore the folder
+recipe/data/
