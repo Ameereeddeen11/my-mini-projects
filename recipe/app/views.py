@@ -28,21 +28,36 @@ def create(request):
     if request.method == "POST":
         image = request.FILES["image"]
         recipe = RecipeForm(request.POST)
-        if recipe.is_valid():
-            recipe.save()
+        category = CategoryForm(request.POST)
+        if recipe.is_valid() and category.is_valid():
+            recipe.save(commit=False)
+            recipe.category = category
+            category.save(commit=False)
+            category.user_id = request.user
+            category.save()
             id_recipe = recipe.instance
             ImagesRecipesOwner.objects.create(
                 recipe_id = id_recipe,
                 image = image,
                 created_by = request.user
             )
+        if recipe.is_valid() and not category.is_valid():
+            recipe.save()
+            id_recipe = recipe.instance
+            ImagesRecipesOwner.objects.create(
+                recipe_id= id_recipe,
+                image= image,
+                created_by= request.user
+            )
         return redirect("home")
     else:
         recipe = RecipeForm()
         image = ImageForm()
+        category = CategoryForm()
     return render(request, "create.html", {
         "form_recipe": recipe,
-        "form_image": image
+        "form_image": image,
+        "category": category
     })
 
 def details(response, id):

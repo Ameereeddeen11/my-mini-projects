@@ -14,7 +14,7 @@ class Recipes(models.Model):
     discription = models.TextField()
     ingredient = models.TextField(null=True)
     instructions = models.TextField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     takes_time = models.CharField(max_length=80, null=True)
     for_how_many_people = models.IntegerField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
