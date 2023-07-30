@@ -16,3 +16,6 @@ recipe/requirements/
 
 # ignore the folder
 recipe/data/
+
+# ignoree .mysql_data
+.mysql_data/
