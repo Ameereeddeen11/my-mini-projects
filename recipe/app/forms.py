@@ -2,7 +2,6 @@ from django import forms
 from .models import *
 
 class RecipeForm(forms.ModelForm):
-    category = forms.CharField(required=False)
     class Meta:
         model = Recipes
         fields = [
@@ -10,12 +9,13 @@ class RecipeForm(forms.ModelForm):
             "discription",
             "ingredient",
             "instructions",
-            "category",
+            "existing_category",
+            "own_category",
             "takes_time",
             "for_how_many_people"
         ]
-
 class CategoryForm(forms.ModelForm):
+    name = forms.TextInput()
     class Meta:
         model = Category
         fields = ["name"]

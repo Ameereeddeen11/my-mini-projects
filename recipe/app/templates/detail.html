@@ -7,7 +7,7 @@
     <div class="row py-1">
         <div class="col-6">
             <div class="d-flex">
-                <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ image.created_by.profile.profile_pic }}" alt="..." width="38" height="40" class="rounded-circle custom-text-left-2">
+                <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/profile-pic/{{ image.created_by.profile.profile_pic }}" alt="..." width="38" height="40" class="rounded-circle custom-text-left-2">
                 <a href="#" style="color: black;"><h5 class="mx-2">{{ image.created_by }}</h5></a>
             </div>
         </div>
@@ -26,6 +26,16 @@
     <div class="row">
         <div class="col text-center">
             <h2>{{ image.recipe_id.title }}</h2>
+        </div>
+    </div>
+        <div class="row py-4">
+        <div class="col">
+            <h4 class="custom-text-left">Category:</h4>
+            {% if image.recipe_id.existing_category %}
+                <p class="custom-text-left">{{ image.recipe_id.existing_category }}</p>
+            {% elif image.recipe_id.own_category %}
+                <p class="custom-text-left">{{ image.recipe_id.own_category }}</p>
+            {% endif %}
         </div>
     </div>
     <div class="row py-4">
