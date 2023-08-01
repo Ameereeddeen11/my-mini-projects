@@ -19,6 +19,12 @@ class Recipes(models.Model):
     takes_time = models.CharField(max_length=80, null=True)
     for_how_many_people = models.IntegerField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    link_to_youtube = models.URLField(null=True)
+
+    def get_youtube_embed_url(self):
+        youtube_id = self.link_to_youtube.split('/')[-1]
+        embed_url = f'https://www.youtube.com/embed/{youtube_id}'
+        return embed_url
 
     def __str__(self):
         return f"{self.title} - {self.discription}"

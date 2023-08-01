@@ -12,7 +12,8 @@ class RecipeForm(forms.ModelForm):
             "existing_category",
             "own_category",
             "takes_time",
-            "for_how_many_people"
+            "for_how_many_people",
+            "link_to_youtube"
         ]
 class CategoryForm(forms.ModelForm):
     name = forms.TextInput()

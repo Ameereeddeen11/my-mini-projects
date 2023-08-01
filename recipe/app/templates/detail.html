@@ -55,6 +55,14 @@
             <p class="py-2 custom-text-left">{{ image.recipe_id.instructions }}</p>
         </div>
     </div>
+    <div class="row py-4">
+        <div class="col container">
+            {% if image.recipe_id.link_to_youtube %}
+                <h4 class="custom-text-left">Video na YouTube</h4>
+                <iframe width="560" height="315" src="{{ image.recipe_id.link_to_youtube }}"></iframe>
+            {% endif %}
+        </div>
+    </div>
     <div class="row py-3">
         <div class="col">
             <form method="post">
