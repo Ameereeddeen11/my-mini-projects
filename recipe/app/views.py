@@ -45,9 +45,29 @@ def create(request):
         "form_image": image
     })
 
-def details(response, id):
-    image = ImagesRecipesOwner.objects.get(id=id)
-    return render(response, "detail.html", {"image": image})
+def details(request, id):
+    if request.method == "POST":
+        comment_form = request.POST["comment"]
+        image = ImagesRecipesOwner.objects.get(id=id)
+        recipe_id = image.recipe_id
+        user_id = request.user
+        comment = Comment.objects.create(
+            user_comment=user_id,
+            comment=comment_form,
+            recipe_id=recipe_id
+        )
+        comment.save()
+        #return redirect("detail/{{}}")
+    else:
+        comment_form = CommentForm()
+        image = ImagesRecipesOwner.objects.get(id=id)
+        recipe_id = image.recipe_id
+        comment = Comment.objects.filter(recipe_id=recipe_id)
+    return render(request, "detail.html", {
+        "image": image,
+        "comment_form": comment_form,
+        "comment": comment
+    })
 
 @login_required()
 def account_page(request):

@@ -5,6 +5,7 @@ from register.models import Profile
 admin.site.register(Profile)
 admin.site.register(ImagesRecipesOwner)
 admin.site.register(Category)
+admin.site.register(Comment)
 admin.site.register(Rating)
 admin.site.register(Recipes)
 admin.site.register(FavoriteRecipe)

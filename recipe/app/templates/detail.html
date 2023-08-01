@@ -57,12 +57,25 @@
     </div>
     <div class="row py-3">
         <div class="col">
-            <div class="mb-3 custom-text-left">
-                <label for="exampleFormControlTextarea1" class="form-label">Napiste nam resenze</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <form method="post">
+                <div class="mb-3 custom-text-left">
+                    {% csrf_token %}
+                    {% load crispy_forms_tags %}
+                    {{ comment_form|crispy }}
+                    <br>
+                    <button type="submit" class="btn btn-primary">Upload Comment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row py-3">
+        <div class="col container">
+            {% for comments in comment %}
+                <div class="card card-body">
+                    <p>{{ comments.comment }}</p>
+                </div>
                 <br>
-                <button type="button" class="btn btn-primary">Primary</button>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

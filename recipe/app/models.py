@@ -21,7 +21,7 @@ class Recipes(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return "f{self.title} - {self.discription}"
+        return f"{self.title} - {self.discription}"
 
 
 class ImagesRecipesOwner(models.Model):
@@ -49,9 +49,10 @@ class Rating(models.Model):
     def __str__(self):
         return f'{self.user_id.username} - {self.recipe_id.title({self.score})}'
 
-class Commet(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    commet = models.TextField()
+class Comment(models.Model):
+    user_comment = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.TextField()
+    recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f'{self.user_id.username} - {self.commet}'
+        return f'{self.user_comment.username} - {self.comment}'

@@ -43,3 +43,8 @@ class RatingForm(forms.ModelForm):
             "recipe_id",
             "score",
         ]
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ["comment"]
