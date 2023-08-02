@@ -15,7 +15,7 @@ class Recipes(models.Model):
     ingredient = models.TextField(null=True)
     instructions = models.TextField()
     existing_category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
-    own_category = models.CharField(max_length=150, null=True)
+    own_category = models.CharField(max_length=150, null=True, blank=True)
     takes_time = models.CharField(max_length=80, null=True)
     for_how_many_people = models.IntegerField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -56,9 +56,18 @@ class Rating(models.Model):
         return f'{self.user_id.username} - {self.recipe_id.title({self.score})}'
 
 class Comment(models.Model):
+    RATING_CHOICES = (
+        (1, '1 - Moc nehutnalo'),
+        (2, '2 - Jde to'),
+        (3, '3 - Dobry'),
+        (4, '4 - Hutnalo'),
+        (5, '5 - Moc hutnalo')
+    )
+
     user_comment = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField()
     recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE, null=True)
+    rating = models.PositiveIntegerField(choices=RATING_CHOICES, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.user_comment.username} - {self.comment}'
+        return f'{self.user_comment.username} - {self.comment} - {self.rating}'
