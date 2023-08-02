@@ -34,17 +34,14 @@ class ImagesRecipesOwner(models.Model):
     recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE, null=True)
     image = models.FileField(upload_to='images/recipe/', default='unkown-profile.jpg', null=True, blank=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="image")
+    likes = models.ManyToManyField(User, blank=False)
+
+    def number_of_likes(self):
+        return self.likes.count()
 
     def __str__(self):
         return f"{self.created_by} - {self.image}"
 
-
-class FavoriteRecipe(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.user_id.username} - {self.recipe.title}"
 
 class Comment(models.Model):
     RATING_CHOICES = (

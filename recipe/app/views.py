@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from register.models import Profile
 from .models import *
 from .forms import *
@@ -46,6 +46,9 @@ def create(request):
     })
 
 def details(request, id):
+    image = ImagesRecipesOwner.objects.get(id=id)
+    recipe_id = image.recipe_id
+    all_comment = Comment.objects.filter(recipe_id=recipe_id)
     if request.method == "POST":
         image = ImagesRecipesOwner.objects.get(id=id)
         recipe_id = image.recipe_id
@@ -67,10 +70,6 @@ def details(request, id):
             )
     else:
         comment_form = CommentForm()
-        image = ImagesRecipesOwner.objects.get(id=id)
-        recipe_id = image.recipe_id
-        all_comment = Comment.objects.filter(recipe_id=recipe_id)
-        #profile = Profile.objects.filter()
     return render(request, "detail.html", {
         "image": image,
         "comment_form": comment_form,
@@ -130,3 +129,12 @@ def delete(request, id):
 def profile(response, id):
     image = ImagesRecipesOwner.objects.filter(created_by=id)
     return render(response, "profile.html", {"images":image})
+
+@login_required()
+def likes(request, pk):
+    recipe = get_object_or_404(ImagesRecipesOwner, id=pk)
+    if recipe.likes.filter(id=request.user.id):
+        recipe.likes.remove(request.user)
+    else:
+        recipe.likes.add(request.user)
+    return redirect("home")

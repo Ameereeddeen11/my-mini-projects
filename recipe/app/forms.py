@@ -28,13 +28,8 @@ class ImageForm(forms.ModelForm):
     required = False
     class Meta:
         model = ImagesRecipesOwner
-        fields = ["image",]
-
-class FavoriteRecipeForm(forms.ModelForm):
-    class Meta:
-        model = FavoriteRecipe
         fields = [
-            "recipe_id",
+            "image",
         ]
 
 class CommentForm(forms.ModelForm):
