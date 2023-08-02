@@ -46,15 +46,6 @@ class FavoriteRecipe(models.Model):
     def __str__(self):
         return f"{self.user_id.username} - {self.recipe.title}"
 
-
-class Rating(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE)
-    score = models.IntegerField()
-
-    def __str__(self):
-        return f'{self.user_id.username} - {self.recipe_id.title({self.score})}'
-
 class Comment(models.Model):
     RATING_CHOICES = (
         (1, '1 - Moc nehutnalo'),

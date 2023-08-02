@@ -82,12 +82,26 @@
     </div>
     <div class="row py-3">
         <div class="col container">
-            {% for comments in comment %}
-                <div class="card card-body">
-                    <div class="d-flex">
-                        <a href="#" style="color: black;"><h5 class="mx-2">{{ comments.user_comment }}</h5></a>
+            {% for comments in all_comment %}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p>{{ comments.comment }}</p>
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex flex-row align-items-center">
+                                <!--<img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ comments.user_comment.profile.profile_pic_set.all }}" alt="avatar" width="25"
+                                  height="25" />-->
+                                <a href="/recipe/profile/{{ image.created_by.id }}/" style="color: black;"><p class="small mb-0 ms-2">{{ comments.user_comment }}</p></a>
+                            </div>
+                            {% if comments.rating %}
+                            <div class="d-flex flex-row align-items-center">
+                                <p class="small text-muted mb-0">{{ comments.rating }}</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                </svg>
+                            </div>
+                            {% endif %}
+                        </div>
                     </div>
-                <p>{{ comments.comment }}</p>
                 </div>
                 <br>
             {% endfor %}

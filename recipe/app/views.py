@@ -47,26 +47,34 @@ def create(request):
 
 def details(request, id):
     if request.method == "POST":
-        comment_form = request.POST["comment"]
         image = ImagesRecipesOwner.objects.get(id=id)
         recipe_id = image.recipe_id
-        user_id = request.user
-        comment = Comment.objects.create(
-            user_comment=user_id,
-            comment=comment_form,
-            recipe_id=recipe_id
-        )
-        comment.save()
-        #return redirect("detail/{{}}")
+        #comment = Comment.objects.create(
+        #    user_comment=user_id,
+        #    comment=comment_form,
+        #    recipe_id=recipe_id
+        #)
+        #comment.save()
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.cleaned_data['comment']
+            new_rating = comment_form.cleaned_data['rating']
+            Comment.objects.create(
+                user_comment=request.user,
+                comment=new_comment,
+                recipe_id=recipe_id,
+                rating=new_rating
+            )
     else:
         comment_form = CommentForm()
         image = ImagesRecipesOwner.objects.get(id=id)
         recipe_id = image.recipe_id
-        comment = Comment.objects.filter(recipe_id=recipe_id)
+        all_comment = Comment.objects.filter(recipe_id=recipe_id)
+        #profile = Profile.objects.filter()
     return render(request, "detail.html", {
         "image": image,
         "comment_form": comment_form,
-        "comment": comment
+        "all_comment": all_comment
     })
 
 @login_required()

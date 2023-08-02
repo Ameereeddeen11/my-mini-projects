@@ -37,15 +37,10 @@ class FavoriteRecipeForm(forms.ModelForm):
             "recipe_id",
         ]
 
-class RatingForm(forms.ModelForm):
-    class Meta:
-        model = Rating
-        fields = [
-            "recipe_id",
-            "score",
-        ]
-
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ["comment"]
+        fields = [
+            "comment",
+            "rating"
+        ]
