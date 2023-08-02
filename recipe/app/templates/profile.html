@@ -1,0 +1,27 @@
+{% extends 'home.html' %}
+{% block title %}Profile{% endblock %}
+{% block search_box %}{% endblock %}
+{% block content %}
+    <div class="container py-5">
+        <div class="row row-cols-2">
+            {% for recipes in images %}
+                <div class="col">
+                    <div class="card mb-3 shadow p-2" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-12">
+                                <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ recipes.image }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{recipes.recipe_id.title}}</h5>
+                                    <p class="card-text">Tento těstovinový pokrm s bohatou omáčkou je dokonalým spojením sytých chutí a jednoduché přípravy, která vás zaručeně potěší a zahřeje.</p>
+                                    <a href="/recipe/detail/{{ recipes.id }}" class="btn btn-primary">Recipe</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -118,3 +118,7 @@ def delete(request, id):
         "delete_recipe":delete_recipe,
         "delete_image":delete_image
     })
+
+def profile(response, id):
+    image = ImagesRecipesOwner.objects.filter(created_by=id)
+    return render(response, "profile.html", {"images":image})

@@ -1,5 +1,5 @@
 {% extends "home.html" %}
-{% block title %}{{image.recipe_id.name}}{% endblock %}
+{% block title %}{{ image.recipe_id.title }}{% endblock %}
 {% block search_box %}{% endblock %}
 {% block content %}
 <br>
@@ -8,7 +8,7 @@
         <div class="col-6">
             <div class="d-flex">
                 <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/profile-pic/{{ image.created_by.profile.profile_pic }}" alt="..." width="38" height="40" class="rounded-circle custom-text-left-2">
-                <a href="#" style="color: black;"><h5 class="mx-2">{{ image.created_by }}</h5></a>
+                <a href="/recipe/profile/{{ image.created_by.id }}/" style="color: black;"><h5 class="mx-2">{{ image.created_by }}</h5></a>
             </div>
         </div>
         <div class=" col-6 d-flex justify-content-end">
