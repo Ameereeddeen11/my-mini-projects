@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-6xe=l5nmgb^n%ued73^#$mef8q^4&sc9z8zx1j_r0++^ya$)if
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -90,12 +90,12 @@ WSGI_APPLICATION = 'recipe.wsgi.application'
 
 DATABASES = {
     'default': {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "recipe",
-        "USER": "root",
-        "PASSWORD": "",
-        "HOST": "db",
-        "PORT": "3306"
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'recipe',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '3306'
     }
 }
 

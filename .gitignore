@@ -19,3 +19,5 @@ recipe/data/
 
 # ignoree .mysql_data
 .mysql_data/
+
+aws-elastic-beanstalk-cli-setup/

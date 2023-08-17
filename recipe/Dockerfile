@@ -4,6 +4,9 @@ FROM python:3
 # create folder in container
 WORKDIR /app
 
+# envirament
+ENV PYTHONUNBUFFERED=1
+
 # copy the requirements.txt file to docker image
 COPY requirements.txt requirements.txt
 
