@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6xe=l5nmgb^n%ued73^#$mef8q^4&sc9z8zx1j_r0++^ya$)if'
+SECRET_KEY = token["DJANGO_SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -90,12 +90,12 @@ WSGI_APPLICATION = 'recipe.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'recipe',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '3306'
+        'ENGINE': token["EBDB_ENGINE"],
+        'NAME': token["EBDB_NAME"],
+        'USER': token["EBDB_USER"],
+        'PASSWORD': token["EBDB_PASSWORD"],
+        'HOST': token["EBDB_HOST"],
+        'PORT': token["EBDB_PORT"]
     }
 }
 

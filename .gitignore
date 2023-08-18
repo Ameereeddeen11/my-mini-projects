@@ -17,7 +17,12 @@ recipe/requirements/
 # ignore the folder
 recipe/data/
 
-# ignoree .mysql_data
+# ignore .mysql_data
 .mysql_data/
 
+# ignore aws-elastic-beanstalk-cli-setup
 aws-elastic-beanstalk-cli-setup/
+
+# ignore .vscode folder and .deployment file
+recipe/.vscode
+recipe/.deployment
