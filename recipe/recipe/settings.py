@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = token["DJANGO_SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -88,6 +88,20 @@ WSGI_APPLICATION = 'recipe.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': token["EBDB_ENGINE"],
+#        'NAME': token["DB_NAME_AZURE"],
+#        'USER': token["DB_USER_AZURE"],
+#        'PASSWORD': token["DB_PASSWORD_AZURE"],
+#        'HOST': token["DB_HOST_AZURE"],
+#        'PORT': token["DB_PORT_AZURE"]
+#        #'OPTIONS': {
+#        #    'sslmode': 'require'
+#        #}
+#    }
+#}
+
 DATABASES = {
     'default': {
         'ENGINE': token["EBDB_ENGINE"],
@@ -98,7 +112,6 @@ DATABASES = {
         'PORT': token["EBDB_PORT"]
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

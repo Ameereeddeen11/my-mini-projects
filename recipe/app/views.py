@@ -52,12 +52,6 @@ def details(request, id):
     if request.method == "POST":
         image = ImagesRecipesOwner.objects.get(id=id)
         recipe_id = image.recipe_id
-        #comment = Comment.objects.create(
-        #    user_comment=user_id,
-        #    comment=comment_form,
-        #    recipe_id=recipe_id
-        #)
-        #comment.save()
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
             new_comment = comment_form.cleaned_data['comment']
@@ -113,6 +107,7 @@ def edit(request, id):
         })
     else:
         return render(request, "home.html")
+    
 @login_required()
 def delete(request, id):
     delete_recipe = Recipes.objects.get(id=id)
