@@ -76,6 +76,11 @@ def account_page(request):
     return render(request, "account.html", {"profile":image})
 
 @login_required()
+def likes_page(request):
+    image = request.user.image.all()
+    return render(request, "likes.html", {"profile":image})
+
+@login_required()
 def edit(request, id):
     if request.user.image.all():
         recipe = Recipes.objects.get(id=id)
