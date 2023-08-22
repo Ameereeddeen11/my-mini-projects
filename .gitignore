@@ -26,3 +26,6 @@ aws-elastic-beanstalk-cli-setup/
 # ignore .vscode folder and .deployment file
 recipe/.vscode
 recipe/.deployment
+
+# ignore zip file
+recipe/recipe.zip

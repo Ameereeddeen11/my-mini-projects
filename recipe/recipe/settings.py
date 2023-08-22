@@ -88,28 +88,14 @@ WSGI_APPLICATION = 'recipe.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': token["EBDB_ENGINE"],
-#        'NAME': token["DB_NAME_AZURE"],
-#        'USER': token["DB_USER_AZURE"],
-#        'PASSWORD': token["DB_PASSWORD_AZURE"],
-#        'HOST': token["DB_HOST_AZURE"],
-#        'PORT': token["DB_PORT_AZURE"]
-#        #'OPTIONS': {
-#        #    'sslmode': 'require'
-#        #}
-#    }
-#}
-
 DATABASES = {
     'default': {
         'ENGINE': token["EBDB_ENGINE"],
-        'NAME': token["EBDB_NAME"],
-        'USER': token["EBDB_USER"],
-        'PASSWORD': token["EBDB_PASSWORD"],
-        'HOST': token["EBDB_HOST"],
-        'PORT': token["EBDB_PORT"]
+        'NAME': token["DB_NAME_AZURE"],
+        'USER': token["DB_USER_AZURE"],
+        'PASSWORD': token["DB_PASSWORD_AZURE"],
+        'HOST': token["DB_HOST_AZURE"],
+        'PORT': token["DB_PORT_AZURE"]
     }
 }
 
