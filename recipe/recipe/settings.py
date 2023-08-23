@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "crispy_forms",
-    "crispy_bootstrap5",
     "storages",
     "bootstrap5",
     "app",
@@ -90,7 +89,7 @@ WSGI_APPLICATION = 'recipe.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': token["EBDB_ENGINE"],
+        'ENGINE': token["DB_ENGINE_AZURE"],
         'NAME': token["DB_NAME_AZURE"],
         'USER': token["DB_USER_AZURE"],
         'PASSWORD': token["DB_PASSWORD_AZURE"],
