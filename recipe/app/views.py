@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from register.forms import ProfileForm, UpdateUser
 from register.models import Profile
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_protect
 
 def home(request):
     profile = Profile.objects.all()
@@ -23,6 +25,7 @@ def search_recipe(request):
     else:
         return redirect("/recipe/")
 
+@csrf_protect
 @login_required()
 def create(request):
     if request.method == "POST":
@@ -77,9 +80,10 @@ def account_page(request):
 
 @login_required()
 def likes_page(request):
-    image = request.user.image.all()
+    image = request.user.likes.all()
     return render(request, "likes.html", {"profile":image})
 
+@csrf_protect
 @login_required()
 def edit(request, id):
     if request.user.image.all():
@@ -138,3 +142,22 @@ def likes(request, pk):
     else:
         recipe.likes.add(request.user)
     return redirect("home")
+
+@csrf_protect
+@login_required()
+def account_setting(request):
+    user = request.user
+    profile = request.user.profile
+    if request.method == "POST":
+        update_info = UpdateUser(request.POST, instance=user)
+        update_profile = ProfileForm(request.POST, request.FILES, instance=profile)
+        if update_info.is_valid() and update_profile.is_valid():
+            update_info.save()
+            update_profile.save()
+    else:
+        update_info = UpdateUser(request.POST, instance=user)
+        update_profile = ProfileForm(request.POST, request.FILES, instance=profile)
+    return render(request, "update-user.html", {
+        "form_profile": update_profile,
+        "form_updateuser": update_info
+    })

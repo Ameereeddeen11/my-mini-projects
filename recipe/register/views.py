@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm, UpdateUser, Profile, ProfileForm
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_protect
 
+@csrf_protect
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST, request.FILES)
@@ -11,13 +13,20 @@ def register(request):
             user = form.save()
             profile = Profile.objects.create(user=user)
             if not profile.profile_pic:
-                profile.profile_pic = "images/profile-pic/unkown-profile.jpg"
+                profile.profile_pic = "unkown-profile.jpg"
                 profile.save()
             redirect("/login/")
+            # login
+            username = form.cleaned_data.get('username')
+            password1 = form.cleaned_data.get('password1')
+            user_authenticate = authenticate(username=username, password=password1)
+            login(request, user_authenticate)
+            return redirect('/') 
     else:
         form = RegisterForm()
     return render(request, "register.html", {"form":form})
 
+@csrf_protect
 @login_required()
 def account_setting(request):
     user = request.user

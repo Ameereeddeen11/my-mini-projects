@@ -19,7 +19,7 @@ class Recipes(models.Model):
     takes_time = models.CharField(max_length=80, null=True)
     for_how_many_people = models.IntegerField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    link_to_youtube = models.URLField(null=True)
+    link_to_youtube = models.URLField(null=True, blank=True)
 
     def get_youtube_embed_url(self):
         youtube_id = self.link_to_youtube.split('/')[-1]
@@ -34,7 +34,7 @@ class ImagesRecipesOwner(models.Model):
     recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE, null=True)
     image = models.FileField(upload_to='images/recipe/', default='unkown-profile.jpg', null=True, blank=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="image")
-    likes = models.ManyToManyField(User, blank=False)
+    likes = models.ManyToManyField(User, blank=False, related_name="likes")
 
     def number_of_likes(self):
         return self.likes.count()

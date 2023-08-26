@@ -4,7 +4,7 @@
     <br>
     <nav class="navbar container mb-1 bg-body shadow p-1 rounded-5" style="background-color: e3f2fd;">
         <div class="container">
-            <a class="navbar-brand" href="/recipe/">
+            <a class="navbar-brand" href="/">
                 <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/logo.jpg" alt="Logo" width="90" height="90" class="d-inline-block text-center">
                 Recipes
             </a>
@@ -15,13 +15,13 @@
                             <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/profile-pic/{{ user.profile.profile_pic }}" alt="mdo" width="34" height="32" class="rounded-circle">
                         {% else %}
                             <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/profile-pic/unkown-profile.jpg" alt="mdo" width="34" height="32" class="rounded-circle">
-                        {% endif %}    
+                        {% endif %}
                     </a>
                     <ul class="dropdown-menu text-small dropdown-menu-end">
-                        <li><a class="dropdown-item" href="/recipe/create/">Novy resept</a></li>
+                        <li><a class="dropdown-item" href="/create/">Novy resept</a></li>
                         <li><a class="dropdown-item" href="/profile_update/">Nastaveni učtu</a></li>
-                        <li><a class="dropdown-item" href="/recipe/likes_pages/">Recipes you liked</a></li>
-                        <li><a class="dropdown-item" href="/recipe/account/">Učet</a></li>
+                        <li><a class="dropdown-item" href="/likes_pages/">Recipes you liked</a></li>
+                        <li><a class="dropdown-item" href="/account/">Učet</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/logout/">Odhlasit</a></li>
                     </ul>
@@ -62,7 +62,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{recipes.recipe_id.title}}</h5>
                                     <p class="card-text">Tento těstovinový pokrm s bohatou omáčkou je dokonalým spojením sytých chutí a jednoduché přípravy, která vás zaručeně potěší a zahřeje.</p>
-                                    <a href="/recipe/detail/{{ recipes.id }}" class="btn btn-primary">Recipe</a>
+                                    <a href="/detail/{{ recipes.id }}" class="btn btn-primary">Recipe</a>
                                     {% if recipes.likes.all %}
                                         <a href="{% url 'recipe_like' recipes.id %}" type="submit" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
                                         <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>

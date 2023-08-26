@@ -20,8 +20,7 @@ from register import views as v
 
 urlpatterns = [
     path('admin-site/', admin.site.urls),
-    path('recipe/', include('app.urls')),
+    path('', include('app.urls')),
     path('register/', v.register, name=('register')),
-    path('profile_update/', v.account_setting, name=('profile_update')),
     path('', include('django.contrib.auth.urls'))
 ]
