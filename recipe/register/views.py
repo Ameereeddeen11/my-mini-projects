@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm, UpdateUser, Profile, ProfileForm
+from .forms import ProfileForm, RegisterForm, Profile, UpdateUser
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_protect
 
 @csrf_protect
@@ -10,12 +9,12 @@ def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST, request.FILES)
         if form.is_valid():
+            profile_pic = form.cleaned_data("profile_pic")
             user = form.save()
-            profile = Profile.objects.create(user=user)
+            profile = Profile.objects.create(user=user, profile_pic=profile_pic)
             if not profile.profile_pic:
-                profile.profile_pic = "unkown-profile.jpg"
+                profile.profile_pic = "images/profile-pic/unkown-profile.jpg"
                 profile.save()
-            redirect("/login/")
             # login
             username = form.cleaned_data.get('username')
             password1 = form.cleaned_data.get('password1')
@@ -28,9 +27,9 @@ def register(request):
 
 @csrf_protect
 @login_required()
-def account_setting(request):
+def account_settings(request):
     user = request.user
-    profile = user.profile
+    profile = request.user.profile
     if request.method == "POST":
         update_info = UpdateUser(request.POST, instance=user)
         update_profile = ProfileForm(request.POST, request.FILES, instance=profile)
@@ -38,8 +37,8 @@ def account_setting(request):
             update_info.save()
             update_profile.save()
     else:
-        update_info = UpdateUser(request.POST, instance=user)
-        update_profile = ProfileForm(request.POST, request.FILES, instance=profile)
+        update_info = UpdateUser(instance=user)
+        update_profile = ProfileForm(instance=profile)
     return render(request, "update-user.html", {
         "form_profile": update_profile,
         "form_updateuser": update_info

@@ -13,7 +13,7 @@ class RegisterForm(UserCreationForm):
             "email",
             "password1",
             "password2",
-            "profile_pic",
+            "profile_pic"
         ]
 
 class ProfileForm(forms.ModelForm):

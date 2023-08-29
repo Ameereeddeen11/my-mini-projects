@@ -13,8 +13,10 @@
                             <div class="form-outline mb-4">
                                 {%csrf_token%}
                                 {{ form|crispy }}
+                                {% block text %}
+                                    <p class="py-1">Profile picture isn't necessary</p>
+                                {% endblock %}
                             </div>
-                            <p class="py-4">Profile picture and bio anen't necessary</p>
                             <!--Checkbox--> 
                             <div class="form-check d-flex justify-content-start mb-4">
                                 <input clas="form-check-input" type="checkbox" value="" id="form1Example3" />
@@ -22,7 +24,7 @@
                             </div>
                             <div class="form-check d-flex justify-content-start mb-4">
                                 {% block login %}
-                                    <a href="/login/">Login</a>
+                                    <p>You can <a href="/login/">login</a> if you have account already</p>
                                 {% endblock %}
                             </div>
                             <a href="/login/"><button class="btn btn-primary btn-lg btn-block" type="submit">{% block sign_button %}Sign in{% endblock %}</button>

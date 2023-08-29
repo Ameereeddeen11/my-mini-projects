@@ -28,9 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = token["DJANGO_SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['my-recipes.azurewebsites.net']
+ALLOWED_HOSTS = ['my-recipes.azurewebsites.net', token["ALLOW_HOST"], "*"]
 
 # Application definition
 
@@ -51,7 +51,7 @@ INSTALLED_APPS = [
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
-CSRF_TRUSTED_ORIGINS = ["https://my-recipes.azurewebsites.net", "https://www.my-recipes.azurewebsites.net"]
+#CSRF_TRUSTED_ORIGINS = ["https://my-recipes.azurewebsites.net", "https://www.my-recipes.azurewebsites.net"]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -145,8 +145,8 @@ MEDIA_URL = 'images/'
 MEDIA_ROOT = BASE_DIR / 'images/'
 
 # Login and logout urls
-LOGIN_REDIRECT_URL = "/recipe/"
-LOGOUT_REDIRECT_URL = "/recipe/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 # AWS S3 access
 AWS_STORAGE_BUCKET_NAME = 'myminiprojectrecipe'

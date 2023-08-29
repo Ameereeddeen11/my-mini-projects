@@ -124,7 +124,7 @@ def delete(request, id):
     if request.method == "POST":
         delete_recipe.delete()
         delete_image.delete()
-        return redirect("/recipe/account/")
+        return redirect("/account/")
     return render(request, "delete.html", {
         "delete_recipe":delete_recipe,
         "delete_image":delete_image
@@ -142,22 +142,3 @@ def likes(request, pk):
     else:
         recipe.likes.add(request.user)
     return redirect("home")
-
-@csrf_protect
-@login_required()
-def account_setting(request):
-    user = request.user
-    profile = request.user.profile
-    if request.method == "POST":
-        update_info = UpdateUser(request.POST, instance=user)
-        update_profile = ProfileForm(request.POST, request.FILES, instance=profile)
-        if update_info.is_valid() and update_profile.is_valid():
-            update_info.save()
-            update_profile.save()
-    else:
-        update_info = UpdateUser(request.POST, instance=user)
-        update_profile = ProfileForm(request.POST, request.FILES, instance=profile)
-    return render(request, "update-user.html", {
-        "form_profile": update_profile,
-        "form_updateuser": update_info
-    })
