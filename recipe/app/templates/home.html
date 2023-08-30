@@ -1,62 +1,61 @@
 {% extends "index.html" %}
 {% block title %}Home{% endblock %}
 {% block navbar %}
-    <div class="container my-3">
-        <nav class="navbar bg-body shadow p-0 rounded-5">
-            <div class="container">
-                <a class="navbar-brand" href="/">
-                    <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/logo.jpg" alt="Logo" width="60" height="60" class="d-inline-block text-center rounded-circle">
-                    Recipes
-                </a>
-                {% if user.is_authenticated %}
-                    <div class="dropdown">
-                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria="false">
-                            {% if user.profile.profile_pic %}
-                                <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ user.profile.profile_pic }}" alt="mdo" width="34" height="34" class="rounded-circle">
-                            {% else %}
-                                <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/profile-pic/unkown-profile.jpg" alt="mdo" width="34" height="34" class="rounded-circle">
-                            {% endif %}
-                        </a>
-                        <ul class="dropdown-menu text-small dropdown-menu-end">
-                            <li><a class="dropdown-item" href="/create/">Novy resept</a></li>
-                            <li><a class="dropdown-item" href="/account-settings/">Nastaveni učtu</a></li>
-                            <li><a class="dropdown-item" href="/likes_pages/">Recipes you liked</a></li>
-                            <li><a class="dropdown-item" href="/account/">Učet</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/logout/">Odhlasit</a></li>
-                        </ul>
-                    </div>
-                {% else %}
-                    <ul class="nav justify-content-center">
-                        <li class="nav-item"><a class="search-button btn" href="/register/">Register here</a></li>
-                        <li class="nav-item mx-3"><a class="search-button btn" href="/login/">Login here</a></li>
+<div class="container">
+    <nav class="navbar bg-body shadow p-0 rounded-5 my-3">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/logo.jpg" alt="Logo" width="60" height="60" class="d-inline-block text-center rounded-circle">
+                Recipes
+            </a>
+            {% if user.is_authenticated %}
+                <div class="dropdown">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria="false">
+                        {% if user.profile.profile_pic %}
+                            <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ user.profile.profile_pic }}" alt="mdo" width="34" height="34" class="rounded-circle">
+                        {% else %}
+                            <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/profile-pic/unkown-profile.jpg" alt="mdo" width="34" height="34" class="rounded-circle">
+                        {% endif %}
+                    </a>
+                    <ul class="dropdown-menu text-small dropdown-menu-end">
+                        <li><a class="dropdown-item" href="/create/">Novy resept</a></li>
+                        <li><a class="dropdown-item" href="/account-settings/">Nastaveni učtu</a></li>
+                        <li><a class="dropdown-item" href="/likes_pages/">Recipes you liked</a></li>
+                        <li><a class="dropdown-item" href="/account/">Učet</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/logout/">Odhlasit</a></li>
                     </ul>
-                {% endif %}
-            </div>
-        </nav>
-    </div>
+                </div>
+            {% else %}
+                <ul class="nav justify-content-center">
+                    <li class="nav-item"><a class="search-button btn" href="/register/">Register here</a></li>
+                    <li class="nav-item mx-3"><a class="search-button btn" href="/login/">Login here</a></li>
+                </ul>
+            {% endif %}
+        </div>
+    </nav>
+</div>
 {% endblock %}
 
 {% block search_box %}
     <div class="container">
-        <div class="row py-4">
-            <div class="col-12 col-md-6">
+        <div class="row py-4 justify-content-between">
+            <div class="col-8 col-md-4">
                 <form class="d-flex justify-content-start" role="search" method="get" action="{% url 'search' %}">
                     <div class="input-group">
                         <input class="form-control" id="searchId" type="search" placeholder="Search" aria-label="Search" name="search">
-                        <button class="search-button" role="button" id="searchId" type="submit">Search</button>
+                        <button class="search-button" role="button" id="searchId" type="submit"><i class="bi bi-search"></i></button>
                     </div>
                 </form>
             </div>
-            <div class="col-12 col-md-6 justify-content-center">
+            <div class="col-4 col-sm-4 float-end">
                 <a class="btn create-button shadow p-2" href="/create/" role="button">Create Recipe</a>
             </div>
         </div>
-    </div>    
+    
 {% endblock %}
 
 {% block content %}
-    <div class="container py-3">
         <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1">
             {% for recipes in images %}
                 <div class="col">
@@ -73,10 +72,9 @@
                                         <p class="card-text">{{recipes.recipe_id.discription}}</p>
                                     </div>
                                     <br>
-                                    
                                     <a href="/detail/{{ recipes.id }}" class="btn btn-primary my-3">Recipe</a>
                                     {% if user.is_authenticated %}
-                                        {% if recipes.likes.all %}
+                                        {% if user in recipes.likes.all %}
                                             <a href="{% url 'recipe_like' recipes.id %}" type="submit" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
                                             <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>
                                             </svg> {{ recipes.number_of_likes }}</a>

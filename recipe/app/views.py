@@ -20,7 +20,7 @@ def search_recipe(request):
         post = Recipes.objects.filter(title__contains=searched)
         return render(request, "search_recipe.html", {
             "search": searched,
-            "post": post,
+            "post": post
         })
     else:
         return redirect("/recipe/")
@@ -51,6 +51,7 @@ def create(request):
 def details(request, id):
     image = ImagesRecipesOwner.objects.get(id=id)
     recipe_id = image.recipe_id
+    profile = Profile.objects.all()
     all_comment = Comment.objects.filter(recipe_id=recipe_id)
     if request.method == "POST":
         image = ImagesRecipesOwner.objects.get(id=id)
@@ -67,10 +68,12 @@ def details(request, id):
             )
     else:
         comment_form = CommentForm()
-    return render(request, "detail.html", {
+        profile = Profile.objects.all()
+    return render(request, "details.html", {
         "image": image,
         "comment_form": comment_form,
-        "all_comment": all_comment
+        "all_comment": all_comment,
+        "profile": profile
     })
 
 @login_required()
