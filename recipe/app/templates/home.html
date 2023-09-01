@@ -2,8 +2,8 @@
 {% block title %}Home{% endblock %}
 {% block navbar %}
 <div class="container">
-    <nav class="navbar bg-body shadow p-0 rounded-5 my-3">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-0 rounded-5 my-3">
+        <div class="container-fluid">
             <a class="navbar-brand" href="/">
                 <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/logo.jpg" alt="Logo" width="60" height="60" class="d-inline-block text-center rounded-circle">
                 Recipes
@@ -27,10 +27,16 @@
                     </ul>
                 </div>
             {% else %}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="nav justify-content-center">
-                    <li class="nav-item"><a class="search-button btn" href="/register/">Register here</a></li>
-                    <li class="nav-item mx-3"><a class="search-button btn" href="/login/">Login here</a></li>
+                    <li class="nav-item"><a class="search-button btn" href="/register/">Register</a></li>
+                    <li class="nav-item mx-3"><a class="search-button btn" href="/login/">Login</a></li>
                 </ul>
+                <br>
+            </div>
             {% endif %}
         </div>
     </nav>
@@ -49,7 +55,7 @@
                 </form>
             </div>
             <div class="col-4 col-sm-4 float-end">
-                <a class="btn create-button shadow p-2" href="/create/" role="button">Create Recipe</a>
+                <a class="float-end btn create-button shadow p-2" href="/create/" role="button"><i class="bi bi-plus"></i> Create Recipe</a>
             </div>
         </div>
     
