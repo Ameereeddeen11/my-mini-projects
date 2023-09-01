@@ -28,9 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = token["DJANGO_SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['my-recipes.azurewebsites.net', token["ALLOW_HOST"]]
+ALLOWED_HOSTS = ['my-recipes.azurewebsites.net', token["ALLOW_HOST"], "*"]
 
 # Application definition
 
@@ -142,7 +142,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # MEDIA URL
 MEDIA_URL = 'images/'
-MEDIA_ROOT = BASE_DIR / 'images/'
+MEDIA_ROOT = BASE_DIR / 'images'
 
 # Login and logout urls
 LOGIN_REDIRECT_URL = "/"

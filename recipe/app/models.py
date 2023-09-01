@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from recipe.validators import file_validators, ext_validator, validate_image_dimensions
+from django.core.validators import FileExtensionValidator
 
 class Category(models.Model):
     name = models.CharField(max_length=150)
@@ -32,7 +33,7 @@ class Recipes(models.Model):
 
 class ImagesRecipesOwner(models.Model):
     recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE, null=True)
-    image = models.FileField(upload_to='images/recipe/', default='unkown-profile.jpg', null=True, blank=True)
+    image = models.FileField(upload_to='images/recipe/', default='unkown-profile.jpg', null=True, blank=True, validators=[file_validators, ext_validator, validate_image_dimensions])
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="image")
     likes = models.ManyToManyField(User, blank=False, related_name="likes")
 

@@ -1,5 +1,6 @@
 from django import forms 
 from .models import *
+from recipe.validators import ext_validator, file_validators
 
 class RecipeForm(forms.ModelForm):
     class Meta:
@@ -22,8 +23,9 @@ class CategoryForm(forms.ModelForm):
         fields = ["name"]
 
 class ImageForm(forms.ModelForm):
-    image = forms.ImageField(
-        widget=forms.FileInput(attrs={'class':'form-control-file'})
+    image = forms.FileField(
+        widget = forms.FileInput(attrs={'class':'form-control-file', 'accept':'.jpg, .png'}),
+        validators=[file_validators, ext_validator, validate_image_dimensions]
     )
     required = False
     class Meta:
