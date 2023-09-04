@@ -1,7 +1,35 @@
 from django.db import models
 from django.contrib.auth.models import User
-from recipe.validators import file_validators, ext_validator, validate_image_dimensions
+#from recipe.validators import file_validators, ext_validator, validate_image_dimensions, validate_int
+from file_validator.models import DjangoFileValidator
 from django.core.validators import FileExtensionValidator
+from django.core.exceptions import ValidationError
+import magic
+
+ext_validator = FileExtensionValidator(['png', 'jpg'])
+
+def file_validators(value):
+    accept = ['image/png', 'image/jpeg']
+    file_type = magic.from_buffer(value.read(1024), mime=True)
+    print(file_type)
+    if file_type not in accept:
+        raise ValidationError("Unsupported file type")
+        
+#def validate_image_dimensions(value):
+#    max_width = 800
+#    max_height = 600
+#
+#    image = Image.open(value)
+#    width, height = image.size
+#    if width > max_width or height > max_height:
+#        raise ValidationError(f"Obrázek má příliš velké rozměry. Maximální rozměry jsou {max_width}x{max_height} px.")
+
+def validate_int(value):
+    if value <= 0:
+        raise ValidationError(
+            ("The reacipe must be for more than %(value) people"),
+            params={"value": value},
+        )
 
 class Category(models.Model):
     name = models.CharField(max_length=150)
@@ -18,7 +46,7 @@ class Recipes(models.Model):
     existing_category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     own_category = models.CharField(max_length=150, null=True, blank=True)
     takes_time = models.CharField(max_length=80, null=True)
-    for_how_many_people = models.IntegerField(null=True)
+    for_how_many_people = models.IntegerField(null=True, validators=[validate_int])
     created_at = models.DateTimeField(auto_now_add=True)
     link_to_youtube = models.URLField(null=True, blank=True)
 
@@ -33,7 +61,7 @@ class Recipes(models.Model):
 
 class ImagesRecipesOwner(models.Model):
     recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE, null=True)
-    image = models.FileField(upload_to='images/recipe/', default='unkown-profile.jpg', null=True, blank=True, validators=[file_validators, ext_validator, validate_image_dimensions])
+    image = models.ImageField(upload_to='images/recipe/', default='unkown-profile.jpg', null=True, blank=True, validators=[file_validators])
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="image")
     likes = models.ManyToManyField(User, blank=False, related_name="likes")
 

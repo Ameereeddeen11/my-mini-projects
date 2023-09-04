@@ -1,8 +1,10 @@
 from django import forms 
 from .models import *
-from recipe.validators import ext_validator, file_validators
+from recipe.validators import ext_validator, file_validators, validate_int
+from django.core.validators import FileExtensionValidator
 
 class RecipeForm(forms.ModelForm):
+    for_how_many_people = forms.IntegerField(validators=[validate_int])
     class Meta:
         model = Recipes
         fields = [
@@ -25,7 +27,7 @@ class CategoryForm(forms.ModelForm):
 class ImageForm(forms.ModelForm):
     image = forms.FileField(
         widget = forms.FileInput(attrs={'class':'form-control-file', 'accept':'.jpg, .png'}),
-        validators=[file_validators, ext_validator, validate_image_dimensions]
+        validators=[]
     )
     required = False
     class Meta:

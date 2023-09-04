@@ -46,12 +46,17 @@ INSTALLED_APPS = [
     "storages",
     "bootstrap5",
     "app",
-    "register"
+    "register",
+    "file_validator"
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 CSRF_TRUSTED_ORIGINS = ["https://my-recipes.azurewebsites.net", "https://www.my-recipes.azurewebsites.net"]
+
+FILE_UPLOAD_HANDLERS = [
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

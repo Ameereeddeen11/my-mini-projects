@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from register.forms import ProfileForm, UpdateUser
 from register.models import Profile
 from .models import *
 from .forms import *
