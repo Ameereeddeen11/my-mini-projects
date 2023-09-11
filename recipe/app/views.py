@@ -28,9 +28,15 @@ def search_recipe(request):
 @login_required()
 def create(request):
     if request.method == "POST":
-        image = request.FILES["image"]
+        #image = request.FILES["image"]
+        image = ImageForm(request.FILES)
         recipe = RecipeForm(request.POST)
-        if recipe.is_valid():
+        #image2 = image.cleaned_data.get('image')
+        #filetype = magic.from_buffer(image.read(1024), mime=True)
+        #if not "image/jpg" in filetype:
+        #    return forms.ValidationError("Unsupported file type")
+        #else: 
+        if recipe.is_valid() and image.is_valid():
             recipe.save()
             id_recipe = recipe.instance
             ImagesRecipesOwner.objects.create(
@@ -38,7 +44,6 @@ def create(request):
                 image=image,
                 created_by=request.user
             )
-        return redirect("home")
     else:
         recipe = RecipeForm()
         image = ImageForm()

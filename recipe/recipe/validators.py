@@ -12,6 +12,7 @@ def file_validators(value):
     
     if file_type not in accept:
         raise ValidationError("Unsupported file type")
+    return value
         
 def validate_image_dimensions(value):
     max_width = 800

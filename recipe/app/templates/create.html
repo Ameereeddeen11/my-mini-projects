@@ -10,8 +10,13 @@
             <div class="container mb-3 custom-text">
                 {% csrf_token %}
                 {{ form_recipe|crispy }}
+                <br>
                 <div class="mb-3">
                     {{ form_image|crispy }}
+                    {% for error in form.file.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+
                 </div>
                 <br>
                 <button class="btn btn-primary btn-lg btn-block" type="submit">Upoad recipe</button>
