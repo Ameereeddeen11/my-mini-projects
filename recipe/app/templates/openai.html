@@ -1,0 +1,17 @@
+{% extends 'home.html' %}
+{% block title %}{% endblock %}
+{% block search_box %}{% endblock %}
+{% block content %}
+    <div class="container py-5 rounded-4 shadow p-1" style="background-color: white;">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="container mb-3 custom-text">
+                <textarea class="form-control" name="user_input" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <br>
+                <button type="submit" class="btn btn-primary">Generate</button>
+            </div>
+        </form>
+        <br>
+        <p>{{ response }}</p>
+    </div>
+{% endblock %}

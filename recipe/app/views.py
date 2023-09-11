@@ -4,6 +4,10 @@ from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
+import openai, json
+
+file_path = open('data/aws_s3.json', 'r')
+token = json.load(file_path)
 
 def home(request):
     profile = Profile.objects.all()
@@ -51,6 +55,24 @@ def create(request):
         "form_recipe": recipe,
         "form_image": image
     })
+
+openai.api_key = token["OPENAI_API_KEY"]
+
+def recipes_by_ai(request):
+    if request.method == 'POST':
+        user_input = request.POST.get('user_input')
+        promt = ("Recipe by this ingredients: " + user_input)
+        response = openai.Completion.create(
+            model = "text-davinci-003",
+            prompt = promt,
+            max_tokens = 150,
+            n = 1,
+            stop = None,
+            temperature = 0.7
+        )
+        ai_response = response.choices[0].text.strip()
+        return render(request, "openai.html", {"response":ai_response})
+    return render(request, "openai.html", {})
 
 def details(request, id):
     image = ImagesRecipesOwner.objects.get(id=id)

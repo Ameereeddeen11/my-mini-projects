@@ -11,5 +11,6 @@ urlpatterns = [
     path('seach_recipe/', views.search_recipe, name="search"),
     path('profile/<int:id>/', views.profile, name="profile"),
     path('recipe_like/<int:pk>/', views.likes, name="recipe_like"),
-    path('likes_pages/', views.likes_page, name="likes_pages")
+    path('likes_pages/', views.likes_page, name="likes_pages"),
+    path('recipes_by_ai', views.recipes_by_ai, name="recipes_by_ai")
 ]
