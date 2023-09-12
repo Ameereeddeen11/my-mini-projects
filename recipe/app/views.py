@@ -20,7 +20,7 @@ def home(request):
 def search_recipe(request):
     if request.method == "GET":
         searched = request.GET["search"]
-        post = Recipes.objects.filter(title__contains=searched)
+        post = Recipes.objects.filter(title__contains=searched).all()
         return render(request, "search_recipe.html", {
             "search": searched,
             "post": post
