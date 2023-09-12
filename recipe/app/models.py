@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from recipe.validators import file_validators, ext_validator, validate_image_dimensions, validate_int
 from django.core.validators import FileExtensionValidator
 
 class Category(models.Model):
@@ -8,7 +7,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class Recipes(models.Model):
     title = models.CharField(max_length=150)
@@ -18,9 +16,12 @@ class Recipes(models.Model):
     existing_category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     own_category = models.CharField(max_length=150, null=True, blank=True)
     takes_time = models.CharField(max_length=80, null=True)
-    for_how_many_people = models.IntegerField(null=True, validators=[validate_int])
+    for_how_many_people = models.IntegerField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     link_to_youtube = models.URLField(null=True, blank=True)
+    image = models.ImageField(upload_to='images/recipe/', default='unkown-profile.jpg', null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png'])])
+    likes = models.ManyToManyField(User, blank=False, related_name="likes")
+    created_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True, related_name="image")
 
     def get_youtube_embed_url(self):
         youtube_id = self.link_to_youtube.split('/')[-1]
@@ -28,21 +29,10 @@ class Recipes(models.Model):
         return embed_url
 
     def __str__(self):
-        return f"{self.title} - {self.discription}"
-
-
-class ImagesRecipesOwner(models.Model):
-    recipe_id = models.ForeignKey(Recipes, on_delete=models.CASCADE, null=True)
-    image = models.ImageField(upload_to='images/recipe/', default='unkown-profile.jpg', null=True, blank=True)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="image")
-    likes = models.ManyToManyField(User, blank=False, related_name="likes")
+        return f"{self.title} - {self.discription} - {self.image} - {self.created_by}"
 
     def number_of_likes(self):
         return self.likes.count()
-
-    def __str__(self):
-        return f"{self.created_by} - {self.image}"
-
 
 class Comment(models.Model):
     RATING_CHOICES = (

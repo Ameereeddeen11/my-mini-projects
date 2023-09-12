@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap4",
     "storages",
     "bootstrap5",
-    "app",
+    "app.apps.AppConfig",
     "register",
     "file_validator"
 ]

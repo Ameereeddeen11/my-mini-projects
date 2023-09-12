@@ -4,10 +4,14 @@ from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
+import openai, json
+
+file_path = open('data/aws_s3.json', 'r')
+token = json.load(file_path)
 
 def home(request):
     profile = Profile.objects.all()
-    recipe = ImagesRecipesOwner.objects.all()
+    recipe = Recipes.objects.all()
     return render(request, "home.html", {
         "profile":profile,
         "images": recipe
@@ -16,7 +20,7 @@ def home(request):
 def search_recipe(request):
     if request.method == "GET":
         searched = request.GET["search"]
-        post = Recipes.objects.filter(title__contains=searched)
+        post = Recipes.objects.filter(title__contains=searched).all()
         return render(request, "search_recipe.html", {
             "search": searched,
             "post": post
@@ -28,31 +32,34 @@ def search_recipe(request):
 @login_required()
 def create(request):
     if request.method == "POST":
-        #image = request.FILES["image"]
-        image = ImageForm(request.FILES)
-        recipe = RecipeForm(request.POST)
-        #image2 = image.cleaned_data.get('image')
-        #filetype = magic.from_buffer(image.read(1024), mime=True)
-        #if not "image/jpg" in filetype:
-        #    return forms.ValidationError("Unsupported file type")
-        #else: 
-        if recipe.is_valid() and image.is_valid():
+        recipe = RecipeForm(request.POST, request.FILES)
+        if recipe.is_valid():
             recipe.save()
-            id_recipe = recipe.instance
-            ImagesRecipesOwner.objects.create(
-                recipe_id=id_recipe,
-                image=image,
-                created_by=request.user
-            )
     else:
         recipe = RecipeForm()
-        image = ImageForm()
     return render(request, "create.html", {
-        "form_recipe": recipe,
-        "form_image": image
+        "form_recipe": recipe
     })
 
-def details(request, id):
+openai.api_key = token["OPENAI_API_KEY"]
+
+def recipes_by_ai(request):
+    if request.method == 'POST':
+        user_input = request.POST.get('user_input')
+        promt = ("Recipe by this ingredients: " + user_input)
+        response = openai.Completion.create(
+            model = "text-davinci-003",
+            prompt = promt,
+            max_tokens = 150,
+            n = 1,
+            stop = None,
+            temperature = 0.7
+        )
+        ai_response = response.choices[0].text.strip()
+        return render(request, "openai.html", {"response":ai_response})
+    return render(request, "openai.html", {})
+
+'''def details(request, id):
     image = ImagesRecipesOwner.objects.get(id=id)
     recipe_id = image.recipe_id
     profile = Profile.objects.all()
@@ -78,7 +85,7 @@ def details(request, id):
         "comment_form": comment_form,
         "all_comment": all_comment,
         "profile": profile
-    })
+    })'''
 
 @login_required()
 def account_page(request):
