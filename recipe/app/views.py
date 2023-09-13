@@ -11,10 +11,8 @@ token = json.load(file_path)
 
 def home(request):
     profile = Profile.objects.all()
-    recipe = Recipes.objects.all()
     return render(request, "home.html", {
-        "profile":profile,
-        "images": recipe
+        "profile":profile
     })
 
 def search_recipe(request):
@@ -59,14 +57,11 @@ def recipes_by_ai(request):
         return render(request, "openai.html", {"response":ai_response})
     return render(request, "openai.html", {})
 
-'''def details(request, id):
-    image = ImagesRecipesOwner.objects.get(id=id)
-    recipe_id = image.recipe_id
+def details(request, id):
+    image = Recipes.objects.get(id=id)
     profile = Profile.objects.all()
-    all_comment = Comment.objects.filter(recipe_id=recipe_id)
+    all_comment = Comment.objects.filter(recipe_id=id)
     if request.method == "POST":
-        image = ImagesRecipesOwner.objects.get(id=id)
-        recipe_id = image.recipe_id
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
             new_comment = comment_form.cleaned_data['comment']
@@ -74,7 +69,7 @@ def recipes_by_ai(request):
             Comment.objects.create(
                 user_comment=request.user,
                 comment=new_comment,
-                recipe_id=recipe_id,
+                recipe_id=id,
                 rating=new_rating
             )
     else:
@@ -85,7 +80,7 @@ def recipes_by_ai(request):
         "comment_form": comment_form,
         "all_comment": all_comment,
         "profile": profile
-    })'''
+    })
 
 @login_required()
 def account_page(request):
@@ -102,30 +97,15 @@ def likes_page(request):
 def edit(request, id):
     if request.user.image.all():
         recipe = Recipes.objects.get(id=id)
-        image = ImagesRecipesOwner.objects.get(recipe_id=recipe)
         if request.method == "POST":
-            recipe_form = RecipeForm(request.POST, instance=recipe)
-            image_form = request.FILES.get("image") or None
+            recipe_form = RecipeForm(request.POST, request.FILES, instance=recipe)
             if recipe_form.is_valid():
                 recipe_form.save()
-                if image_form:
-                    image.delete()
-                    id_recipe = recipe_form.instance
-                    ImagesRecipesOwner.objects.create(
-                        recipe_id=id_recipe,
-                        image=image_form,
-                        created_by=request.user
-                    )
-                    return redirect("/recipe/account/")
         else:
             recipe = Recipes.objects.get(id=id)
             recipe_form = RecipeForm(instance=recipe)
-            image = ImagesRecipesOwner.objects.get(recipe_id=recipe)
-            image_form = ImageForm(instance=image)
         return render(request, "edit.html", {
             "recipe_form": recipe_form,
-            "default_image": image,
-            "image_form": image_form,
             "recipe": recipe
         })
     else:
@@ -134,23 +114,20 @@ def edit(request, id):
 @login_required()
 def delete(request, id):
     delete_recipe = Recipes.objects.get(id=id)
-    delete_image = ImagesRecipesOwner.objects.get(recipe_id=delete_recipe)
     if request.method == "POST":
         delete_recipe.delete()
-        delete_image.delete()
         return redirect("/account/")
     return render(request, "delete.html", {
-        "delete_recipe":delete_recipe,
-        "delete_image":delete_image
+        "delete_recipe":delete_recipe
     })
 
 def profile(response, id):
-    image = ImagesRecipesOwner.objects.filter(created_by=id)
+    image = Recipes.objects.filter(created_by=id)
     return render(response, "profile.html", {"images":image})
 
 @login_required()
 def likes(request, pk):
-    recipe = get_object_or_404(ImagesRecipesOwner, id=pk)
+    recipe = get_object_or_404(Recipes, id=pk)
     if recipe.likes.filter(id=request.user.id):
         recipe.likes.remove(request.user)
     else:

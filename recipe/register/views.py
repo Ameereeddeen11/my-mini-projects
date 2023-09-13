@@ -9,7 +9,7 @@ def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST, request.FILES)
         if form.is_valid():
-            profile_pic = form.cleaned_data("profile_pic")
+            profile_pic = form.cleaned_data["profile_pic"]
             user = form.save()
             profile = Profile.objects.create(user=user, profile_pic=profile_pic)
             if not profile.profile_pic:

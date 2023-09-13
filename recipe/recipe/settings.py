@@ -45,9 +45,8 @@ INSTALLED_APPS = [
     "crispy_bootstrap4",
     "storages",
     "bootstrap5",
-    "app.apps.AppConfig",
-    "register",
-    "file_validator"
+    "app",
+    "register"
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
@@ -95,12 +94,12 @@ WSGI_APPLICATION = 'recipe.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': token["DB_ENGINE_AZURE"],
-        'NAME': token["DB_NAME_AZURE"],
-        'USER': token["DB_USER_AZURE"],
-        'PASSWORD': token["DB_PASSWORD_AZURE"],
-        'HOST': token["DB_HOST_AZURE"],
-        'PORT': token["DB_PORT_AZURE"]
+        'ENGINE': token["DB_ENGINE"],
+        'NAME': token["DB_NAME"],
+        'USER': token["DB_USER"],
+        'PASSWORD': token["DB_PASSWORD"],
+        'HOST': token["DB_HOST"],
+        'PORT': token["DB_PORT"]
     }
 }
 

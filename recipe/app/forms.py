@@ -1,16 +1,16 @@
 from django import forms 
 from .models import *
+from .validators import file_validators, validate_int, validate_file_size
 from django.core.validators import FileExtensionValidator
-from recipe.validators import validate_file_type, validate_int, validate_image_dimensions
 
 class RecipeForm(forms.ModelForm):
     for_how_many_people = forms.IntegerField(validators=[validate_int])
     image = forms.FileField(
         widget = forms.FileInput(attrs={'class':'form-control-file', 'accept':'.jpg, .png'}),
         validators=[
-            FileExtensionValidator(allowed_extensions=['jpg', 'png']),
-            validate_file_type,
-            validate_image_dimensions
+            FileExtensionValidator(allowed_extensions=['jpg', 'png', 'jpeg']),
+            file_validators,
+            validate_file_size
         ]
     )
     class Meta:
@@ -33,7 +33,7 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ["name"]
-      
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
