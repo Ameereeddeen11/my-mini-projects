@@ -11,8 +11,10 @@ token = json.load(file_path)
 
 def home(request):
     profile = Profile.objects.all()
+    recipe = Recipes.objects.all()
     return render(request, "home.html", {
-        "profile":profile
+        "profile":profile,
+        "images":recipe
     })
 
 def search_recipe(request):
@@ -32,6 +34,8 @@ def create(request):
     if request.method == "POST":
         recipe = RecipeForm(request.POST, request.FILES)
         if recipe.is_valid():
+            recipe.save(commit=False)
+            recipe.instance.created_by = request.user
             recipe.save()
     else:
         recipe = RecipeForm()
@@ -59,8 +63,8 @@ def recipes_by_ai(request):
 
 def details(request, id):
     image = Recipes.objects.get(id=id)
-    profile = Profile.objects.all()
-    all_comment = Comment.objects.filter(recipe_id=id)
+    profile = Profile.objects.get(user=image.created_by.id)
+    all_comment = Comment.objects.filter(recipe_id=image)
     if request.method == "POST":
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
@@ -69,12 +73,11 @@ def details(request, id):
             Comment.objects.create(
                 user_comment=request.user,
                 comment=new_comment,
-                recipe_id=id,
+                recipe_id=image,
                 rating=new_rating
             )
     else:
         comment_form = CommentForm()
-        profile = Profile.objects.all()
     return render(request, "details.html", {
         "image": image,
         "comment_form": comment_form,

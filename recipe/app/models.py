@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from .validators import file_validators, validate_file_size, validate_int, validate_image_dimensions
+from .validators import file_validators, validate_file_size, validate_int
 from django.core.validators import FileExtensionValidator
 
 class Category(models.Model):
@@ -27,8 +27,7 @@ class Recipes(models.Model):
         validators=[
             FileExtensionValidator(allowed_extensions=['jpg', 'png', 'jpeg']),
             file_validators,
-            validate_file_size,
-            validate_image_dimensions
+            validate_file_size
         ]
     )
 
