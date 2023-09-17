@@ -11,9 +11,30 @@
                 {% csrf_token %}
                 {{ form_recipe|crispy }}
                 <br>
+                <div class="text-center">
+                    <img id="previewImage" src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/logo.jpg" alt="Image Preview" style="max-width: 600px; max-height: 600px;">
+                </div>
+                <br>
                 <button class="btn btn-primary btn-lg btn-block" type="submit">Upoad recipe</button>
             </div>
         </form>
     </div>
     <br>
+    <script>
+        document.getElementById('imageInput').addEventListener('change', function() {
+            const preview = document.getElementById('previewImage');
+            const file = this.files[0];
+            const reader = new FileReader();
+        
+            reader.onload = function() {
+                preview.src = reader.result;
+            }
+        
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/logo.jpg";
+            }
+        });
+    </script>
 {% endblock %}

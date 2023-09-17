@@ -6,6 +6,9 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="container mb-3 custom-text">
+                <h3>Generate recipe by AI</h3>
+                <p>Give me some ingredients for generating recipe</p>
+                <br>
                 <textarea class="form-control" name="user_input" id="exampleFormControlTextarea1" rows="3"></textarea>
                 <br>
                 <button type="submit" class="btn btn-primary">Generate</button>

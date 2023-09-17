@@ -6,7 +6,13 @@ from django.core.validators import FileExtensionValidator
 class RecipeForm(forms.ModelForm):
     for_how_many_people = forms.IntegerField(validators=[validate_int])
     image = forms.FileField(
-        widget = forms.FileInput(attrs={'class':'form-control', 'accept':'.jpg, .png'}),
+        widget = forms.FileInput(
+            attrs={
+                'class':'form-control', 
+                'accept':'.jpg, .png',
+                'id': 'imageInput'
+                }
+        ),
         validators=[
             FileExtensionValidator(allowed_extensions=['jpg', 'png', 'jpeg']),
             file_validators,

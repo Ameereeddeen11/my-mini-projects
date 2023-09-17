@@ -27,16 +27,16 @@
                     </ul>
                 </div>
             {% else %}
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <ul class="nav justify-content-center">
-                    <li class="nav-item"><a class="search-button btn" href="/register/">Register</a></li>
-                    <li class="nav-item mx-3"><a class="search-button btn" href="/login/">Login</a></li>
-                </ul>
-                <br>
-            </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item"><a class="search-button btn" href="/register/">Register</a></li>
+                        <li class="nav-item mx-3"><a class="search-button btn" href="/login/">Login</a></li>
+                    </ul>
+                    <br> 
+                </div>
             {% endif %}
         </div>
     </nav>
@@ -56,10 +56,11 @@
             </div>
             <div class="col-4 col-sm-4 float-end">
                 {% if user.is_authenticated %}
-                    <a class="float-end btn create-button shadow p-2" href="/create/" role="button"><i class="bi bi-plus"></i> Create Recipe</a>
+                    <a class="float-end btn create-button shadow p-2 mb-2" href="/create/" role="button"><i class="bi bi-plus"></i> Create Recipe</a>
                 {% else %}
-                    <a class="float-end btn create-button shadow p-2" href="/login/" role="button"><i class="bi bi-plus"></i> Create Recipe</a>
+                    <a class="float-end btn create-button shadow p-2 mb-2" href="/login/" role="button"><i class="bi bi-plus"></i> Create Recipe</a>
                 {% endif %}
+                <a class="float-end btn create-button shadow p-2 me-md-2" href="/recipes_by_ai/" role="button"><i class="bi bi-robot"></i> Recipes by AI</a>
             </div>
         </div>
     
