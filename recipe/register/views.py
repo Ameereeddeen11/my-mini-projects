@@ -7,14 +7,11 @@ from django.views.decorators.csrf import csrf_protect
 @csrf_protect
 def register(request):
     if request.method == "POST":
-        form = RegisterForm(request.POST, request.FILES)
+        form = RegisterForm(request.POST)
         if form.is_valid():
-            profile_pic = form.cleaned_data["profile_pic"]
             user = form.save()
-            profile = Profile.objects.create(user=user, profile_pic=profile_pic)
-            if not profile.profile_pic:
-                profile.profile_pic = "images/profile-pic/unkown-profile.jpg"
-                profile.save()
+            profile = Profile.objects.create(user=user, profile_pic="images/profile-pic/unkown-profile.jpg")
+            profile.save()
             # login
             username = form.cleaned_data.get('username')
             password1 = form.cleaned_data.get('password1')

@@ -30,7 +30,6 @@ class RecipeForm(forms.ModelForm):
             "own_category",
             "takes_time",
             "for_how_many_people",
-            "link_to_youtube",
             "image"
         ]
 

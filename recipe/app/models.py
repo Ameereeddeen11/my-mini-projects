@@ -20,10 +20,9 @@ class Recipes(models.Model):
     takes_time = models.CharField(max_length=80, null=True)
     for_how_many_people = models.IntegerField(null=True, validators=[validate_int])
     created_at = models.DateTimeField(auto_now_add=True)
-    link_to_youtube = models.URLField(null=True, blank=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="image")
     likes = models.ManyToManyField(User, blank=False, related_name="likes")
-    image = models.ImageField(upload_to='images/recipe/', default='unkown-profile.jpg', null=True, blank=True, 
+    image = models.ImageField(upload_to='images/recipe/', default='logo.jpg', null=True, blank=True, 
         validators=[
             FileExtensionValidator(allowed_extensions=['jpg', 'png', 'jpeg']),
             file_validators,

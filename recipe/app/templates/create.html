@@ -8,14 +8,17 @@
     <div class="container py-5 rounded-4 shadow p-1" style="background-color: white;">
         <form method="post" enctype="multipart/form-data">
             <div class="container mb-3 custom-text">
-                {% csrf_token %}
-                {{ form_recipe|crispy }}
-                <br>
-                <div class="text-center">
-                    <img id="previewImage" src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/logo.jpg" alt="Image Preview" style="max-width: 600px; max-height: 600px;">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img id="previewImage" class="img-fluid mb-3 rounded-3" src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/logo.jpg" alt="Image Preview">
+                    </div>
+                    <div class="col-lg-6">
+                        {% csrf_token %}
+                        {{ form_recipe|crispy }}
+                        <br>
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Upoad recipe</button>
+                    </div>
                 </div>
-                <br>
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Upoad recipe</button>
             </div>
         </form>
     </div>

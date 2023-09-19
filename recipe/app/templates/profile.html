@@ -4,12 +4,12 @@
 {% block content %}
     <div class="container py-5">
         <div class="row row-cols-2">
-            {% for recipes in images %}
+            {% for image in images %}
                 <div class="col">
                     <div class="card mb-3 shadow p-2" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-12">
-                                <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ recipes.image }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
+                                <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ image.image }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
                             </div>
                             <div class="col-md-12">
                                 <div class="card-body">

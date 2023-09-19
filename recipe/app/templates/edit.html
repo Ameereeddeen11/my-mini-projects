@@ -6,16 +6,15 @@
     <form method="post" enctype="multipart/form-data">
         <div class="container py-5 rounded-4 shadow p-1" style="background-color: white;">
             <div class="row container py-1">
-                <div class="col text-center">
-                    <img class="img-fluid mx-auto d-block rounded-4 " src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ default_image.image }}" alt="...">
+                <div class="col-lg-6 text-center">
+                    <img class="img-fluid mx-auto d-block rounded-4 " src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ recipe.image }}" alt="...">
                 </div>
-                <div class="mb-3 custom-text">
+                <div class="col-lg-6 mb-3 custom-text">
                     {% csrf_token %}
                     {% load crispy_forms_tags %}
                     {{ recipe_form|crispy }}
                     {{ image_form|crispy }}
-                </div>
-                <div class="custom-text">
+                    <br>
                     <button class="btn btn-primary" type="submit">Update</button>
                 </div>
             </div>
