@@ -5,6 +5,7 @@ from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 import openai, json
+from serpapi import GoogleSearch
 
 file_path = open('data/aws_s3.json', 'r')
 token = json.load(file_path)
@@ -12,6 +13,7 @@ token = json.load(file_path)
 def home(request):
     profile = Profile.objects.all()
     recipe = Recipes.objects.all()
+    #recipe_result = result["recipe_results"]
     return render(request, "home.html", {
         "profile":profile,
         "images":recipe
@@ -21,10 +23,26 @@ def search_recipe(request):
     if request.method == "GET":
         searched = request.GET["search"]
         post = Recipes.objects.filter(title__contains=searched).all()
-        return render(request, "search_recipe.html", {
-            "search": searched,
-            "post": post
-        })
+        params = {
+            "q": searched,
+            "hl": "en",
+            "gl": "us",
+            "api_key": token["SERPAPI_KEY"],
+        }
+        search = GoogleSearch(params)
+        result = search.get_dict()
+        try:
+            recipes_results = result["recipes_results"]
+            return render(request, "search_recipe.html", {
+                "search": searched,
+                "post": post,
+                "result": recipes_results
+            })
+        except:
+            return render(request, "search_recipe.html", {
+                "search": searched,
+                "post": post
+            })
     else:
         return redirect("/recipe/")
 
