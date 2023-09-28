@@ -13,7 +13,6 @@ token = json.load(file_path)
 def home(request):
     profile = Profile.objects.all()
     recipe = Recipes.objects.all()
-    #recipe_result = result["recipe_results"]
     return render(request, "home.html", {
         "profile":profile,
         "images":recipe
@@ -51,14 +50,23 @@ def search_recipe(request):
 def create(request):
     if request.method == "POST":
         recipe = RecipeForm(request.POST, request.FILES)
-        if recipe.is_valid():
+        category = CategoryForm(request.POST)
+        if recipe.is_valid() and not category.is_valid():
             recipe.save(commit=False)
             recipe.instance.created_by = request.user
             recipe.save()
+        elif category.is_valid():
+            category.save()
+            recipe.save(commit=False)
+            recipe.instance.created_by = request.user
+            recipe.instance.existing_category = category.instance
+            recipe.save()
     else:
         recipe = RecipeForm()
+        category = CategoryForm()
     return render(request, "create.html", {
-        "form_recipe": recipe
+        "form_recipe": recipe,
+        "category": category
     })
 
 openai.api_key = token["OPENAI_API_KEY"]
