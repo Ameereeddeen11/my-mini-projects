@@ -25,6 +25,7 @@ def register(request):
 @csrf_protect
 @login_required()
 def account_settings(request):
+    profile2 = Profile.objects.get(user=request.user)
     user = request.user
     profile = request.user.profile
     if request.method == "POST":
@@ -38,5 +39,6 @@ def account_settings(request):
         update_profile = ProfileForm(instance=profile)
     return render(request, "update-user.html", {
         "form_profile": update_profile,
-        "form_updateuser": update_info
+        "form_updateuser": update_info,
+        "profile": profile2
     })

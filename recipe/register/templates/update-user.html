@@ -3,17 +3,43 @@
 {% block search_box %}{% endblock %}
 {% block content %}
     <br>
-    <form method="post" enctype="multipart/form-data">
-        <div class="container p-4 rounded-4 shadow p-1" style="background-color: white;">
-            <div class="mb-3 custom-text">
-                {% csrf_token %}
-                {% load crispy_forms_tags %}
-                {{ form_updateuser|crispy }}
-                {{ form_profile|crispy }}
+    <div class="container py-5 rounded-4 shadow p-1" style="background-color: white;">
+        <form method="post" enctype="multipart/form-data">
+            <div class="container mb-3 custom-text">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img id="previewImage" class="img-fluid rounded-3" src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ profile.profile_pic }}" alt="Image Preview">
+                    </div>
+                    <div class="col-lg-6">
+                        {% csrf_token %}
+                        {% load crispy_forms_tags %}
+                        {{ form_updateuser|crispy }}
+                        {{ form_profile|crispy }}
+                        <br>
+                        <div class="custom-text">
+                            <button class="btn btn-primary" type="submit">Update</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="custom-text">
-                <button class="btn btn-primary" type="submit">Update</button>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
+    <br>
+    <script>
+        document.getElementById('imageInput').addEventListener('change', function() {
+            const preview = document.getElementById('previewImage');
+            const file = this.files[0];
+            const reader = new FileReader();
+        
+            reader.onload = function() {
+                preview.src = reader.result;
+            }
+        
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/images/logo.jpg";
+            }
+        });
+    </script>
 {% endblock %}

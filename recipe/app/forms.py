@@ -27,7 +27,6 @@ class RecipeForm(forms.ModelForm):
             "ingredient",
             "instructions",
             "existing_category",
-            #"own_category",
             "takes_time",
             "for_how_many_people",
             "image"

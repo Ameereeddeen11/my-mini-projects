@@ -7,24 +7,22 @@ from django.core.validators import FileExtensionValidator
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField()
-    #profile_pic = forms.ImageField(required=False)
     class Meta:
         model = User
         fields = [
             "username",
             "email",
             "password1",
-            "password2",
-            #"profile_pic"
+            "password2"
         ]
 
 class ProfileForm(forms.ModelForm):
-    image = forms.FileField(
+    profile_pic = forms.FileField(
         widget = forms.FileInput(
             attrs={
                 'class':'form-control', 
                 'accept':'.jpg, .png',
-                'id': 'imageInput2'
+                'id': 'imageInput'
                 }
         ),
         validators=[
