@@ -128,14 +128,25 @@ def edit(request, id):
         recipe = Recipes.objects.get(id=id)
         if request.method == "POST":
             recipe_form = RecipeForm(request.POST, request.FILES, instance=recipe)
-            if recipe_form.is_valid():
+            category = CategoryForm(request.POST, instance=recipe.existing_category)
+            if recipe_form.is_valid() and not category.is_valid():
+                recipe_form.save(commit=False)
+                recipe_form.instance.created_by = request.user
+                recipe_form.save()
+            elif category.is_valid():
+                category.save()
+                recipe_form.save(commit=False)
+                recipe_form.instance.created_by = request.user
+                recipe_form.instance.existing_category = category.instance
                 recipe_form.save()
         else:
             recipe = Recipes.objects.get(id=id)
             recipe_form = RecipeForm(instance=recipe)
+            category = CategoryForm(instance=recipe.existing_category)
         return render(request, "edit.html", {
             "recipe_form": recipe_form,
-            "recipe": recipe
+            "recipe": recipe,
+            "category": category
         })
     else:
         return render(request, "home.html")

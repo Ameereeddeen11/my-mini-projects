@@ -13,7 +13,7 @@
                     {% csrf_token %}
                     {% load crispy_forms_tags %}
                     {{ recipe_form|crispy }}
-                    {{ image_form|crispy }}
+                    {{ category|crispy }}
                     <br>
                     <button class="btn btn-primary" type="submit">Update</button>
                 </div>

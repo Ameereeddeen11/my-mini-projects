@@ -33,7 +33,7 @@ class RecipeForm(forms.ModelForm):
         ]
 
 class CategoryForm(forms.ModelForm):
-    name = forms.TextInput()
+    name = forms.CharField(required=False)
     class Meta:
         model = Category
         fields = ["name"]
