@@ -22,22 +22,30 @@ def search_recipe(request):
     if request.method == "GET":
         searched = request.GET["search"]
         post = Recipes.objects.filter(title__contains=searched).all()
-        params = {
-            "q": searched,
-            "hl": "en",
-            "gl": "us",
-            "api_key": token["SERPAPI_KEY"],
-        }
-        search = GoogleSearch(params)
-        result = search.get_dict()
-        try:
-            recipes_results = result["recipes_results"]
-            return render(request, "search_recipe.html", {
-                "search": searched,
-                "post": post,
-                "result": recipes_results
-            })
-        except:
+        if post == None:    
+            params = {
+                "q": searched,
+                "hl": "en",
+                "gl": "us",
+                "api_key": token["SERPAPI_KEY"],
+            }
+            search = GoogleSearch(params)
+            result = search.get_dict()
+            try:
+                recipes_results = result["recipes_results"]
+                ingredients_recipe = json.loads(json.dumps(recipes_results[0]["ingredients"]))
+                return render(request, "search_recipe.html", {
+                    "search": searched,
+                    "post": post,
+                    "result": recipes_results,
+                    "ingredients": ingredients_recipe,
+                })
+            except:
+                return render(request, "search_recipe.html", {
+                    "search": searched,
+                    "post": post
+                })
+        else:
             return render(request, "search_recipe.html", {
                 "search": searched,
                 "post": post

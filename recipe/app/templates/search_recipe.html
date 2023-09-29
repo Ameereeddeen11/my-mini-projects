@@ -28,69 +28,88 @@
 {% endblock %}
 {% block content %}
     {% if search %}
-            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1"">
-                {% for recipes in post %}
-                    <div class="col">
-                        <div class="card mb-3 shadow p-2" style="max-width: 540px;">
-                            <div class="row g-0">
-                                <div class="col-md-12">
-                                    {% for images in recipes.imagesrecipesowner_set.all %}
-                                        <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ images.image }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
-                                    {% endfor %}
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{recipes.title}}</h5>
-                                        <p class="card-text">Tento těstovinový pokrm s bohatou omáčkou je dokonalým spojením sytých chutí a jednoduché přípravy, která vás zaručeně potěší a zahřeje.</p>
-                                        <a href="/detail/{{ recipes.id }}" class="btn btn-primary">Recipe</a>
-                                        {% if user.is_authenticated %}
-                                        {% for like in recipes.imagesrecipesowner_set.all %}
-                                            {% if user in like.likes.all %}
-                                                <a href="{% url 'recipe_like' recipes.id %}" type="submit" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
-                                                <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>
-                                                {% for likes in recipes.imagesrecipesowner_set.all %}
-                                                    </svg> {{ likes.number_of_likes }}</a>
-                                                {% endfor %}
-                                            {% else %}
-                                                <a href="{% url 'recipe_like' recipes.id %}" type="submit" class="btn btn-outline-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
-                                                <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>
-                                                {% for likes in recipes.imagesrecipesowner_set.all %}
-                                                    </svg> {{ likes.number_of_likes }}</a>
-                                                {% endfor %}
-                                            {% endif %}
-                                        {% endfor %}
+        {% if post %}
+        <div class="row rounded-5" style="background-color: white;">
+            <h2 class="text-center py-1">Search results for: {{ search }}</h2>
+        </div>
+        <br>
+        {% endif %}
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1">
+            {% for recipes in post %}
+                <div class="col">
+                    <div class="card mb-3 shadow p-2" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-12">
+                                <img src="https://myminiprojectrecipe.s3.eu-central-1.amazonaws.com/{{ recipes.image }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{recipes.title}}</h5>
+                                    <a data-bs-toggle="collapse" data-bs-target="#{{recipes.id}}" aria-expanded="false" aria-controls="{{recipes.id}}">About recipe</a>
+                                    <div class="collapse" id="{{recipes.id}}">
+                                        <p class="card-text">{{recipes.discription}}</p>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <a href="/detail/{{ recipes.id }}" class="btn btn-primary">Recipe</a>
+                                    {% if user.is_authenticated %}
+                                    {% for like in recipes.imagesrecipesowner_set.all %}
+                                        {% if user in like.likes.all %}
+                                            <a href="{% url 'recipe_like' recipes.id %}" type="submit" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                            <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>
+                                            {% for likes in recipes.imagesrecipesowner_set.all %}
+                                                </svg> {{ likes.number_of_likes }}</a>
+                                            {% endfor %}
                                         {% else %}
-                                            <a href="/login/" type="submit" class="btn btn-outline-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                            <a href="{% url 'recipe_like' recipes.id %}" type="submit" class="btn btn-outline-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
                                             <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>
                                             {% for likes in recipes.imagesrecipesowner_set.all %}
                                                 </svg> {{ likes.number_of_likes }}</a>
                                             {% endfor %}
                                         {% endif %}
-                                    </div>
+                                    {% endfor %}
+                                    {% else %}
+                                        <a href="/login/" type="submit" class="btn btn-outline-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>
+                                        {% for likes in recipes.imagesrecipesowner_set.all %}
+                                            </svg> {{ likes.number_of_likes }}</a>
+                                        {% endfor %}
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
-                {% endfor %}
-                {% for recipe in result %}
-                    <div class="col">
-                        <div class="card mb-3 shadow p-2" style="max-width: 540px;">
-                            <div class="row g-0">
-                                <div class="col-md-12">
-                                    <img src="{{ recipe.thumbnail }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{recipe.title}}</h5>
-                                        <p class="card-text">Tento těstovinový pokrm s bohatou omáčkou je dokonalým spojením sytých chutí a jednoduché přípravy, která vás zaručeně potěší a zahřeje.</p>
-                                        <a href="{{ recipe.link }}" class="btn btn-primary" target="_blank">Recipe</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        {% if result %}
+            <div class="row rounded-5" style="background-color: white;">
+                <h2 class="text-center py-1">Similar recipes</h2>
             </div>
+            <br>
+        {% endif %}
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1">
+            {% for recipe in result %}
+                <div class="col">
+                    <div class="card mb-3 shadow p-2" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-12">
+                                <img src="{{ recipe.thumbnail }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{recipe.title}}</h5>
+                                    <!--<a data-bs-toggle="collapse" data-bs-target="#recipe" aria-expanded="false" aria-controls="{{recipes.id}}">About recipe</a>-->
+                                    <!--<div class="collapse" id="recipe">-->
+                                        <p class="card-text">Ingredients for this recipe: {% for ingredient in ingredients %} {{ingredient}}, {% endfor %}. It takes {{recipe.total_time}}</p>
+                                    <!--</div>-->
+                                    <a href="{{ recipe.link }}" class="btn btn-primary" target="_blank">Recipe</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     {% else %}
         <h1>You forgot to search</h1>

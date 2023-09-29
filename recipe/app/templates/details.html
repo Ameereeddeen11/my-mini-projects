@@ -20,13 +20,9 @@
                 <div class="card shadow p-3">
                     <div class="card-body">
                         <h3 class="card-title">{{ image.title }}</h3>
-                        {% if image.existing_category %}
-                            <p class="card-text"><i class="bi bi-list-ul"></i> Category: {{ image.existing_category }}</p>
-                        {% elif image.own_category %}
-                            <p class="card-text"><i class="bi bi-list-ul"></i> Category: {{ image.own_category }}</p>
-                        {% endif %}
-                        <p class="card-text"><i class="bi bi-clock"></i> Preparation Time: {{ image.recipe_id.takes_time }}</p>
-                        <p class="card-text"><i class="bi bi-people"></i> Servings: {{ image.recipe_id.for_how_many_people }}x</p>
+                        <p class="card-text"><i class="bi bi-list-ul"></i> Category: {% if image.existing_category %} {{ image.existing_category }} {% else %} Neni uveden {% endif %}</p>
+                        <p class="card-text"><i class="bi bi-clock"></i> Preparation Time: {{ image.takes_time }}</p>
+                        <p class="card-text"><i class="bi bi-people"></i> Servings: {{ image.for_how_many_people }}x</p>
                         {% if user.is_authenticated %}
                                 {% if user in image.likes.all %}
                                     <a href="{% url 'recipe_like' image.id %}" type="submit" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
