@@ -29,3 +29,7 @@ recipe/.deployment
 
 # ignore zip file
 recipe/recipe.zip
+
+# ignore my-bot-venv folder and .env file
+python-bot/my-bot-venv/
+python-bot/.env
