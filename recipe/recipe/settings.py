@@ -30,7 +30,7 @@ SECRET_KEY = token["DJANGO_SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['my-recipes.azurewebsites.net', token["ALLOW_HOST"], "*"]
+ALLOWED_HOSTS = ["127.0.0.1,localhost"]].split(",")
 
 # Application definition
 
