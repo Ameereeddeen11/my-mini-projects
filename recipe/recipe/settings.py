@@ -11,11 +11,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
 import os, json
 
-# Import json file
-file_path = open('data/aws_s3.json', 'r')
-token = json.load(file_path)
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,12 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = token["DJANGO_SECRET_KEY"]
+SECRET_KEY = os.environ.get('SECRET_KEY_RECIPES')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG') == 'True'
 
-ALLOWED_HOSTS = ["127.0.0.1,localhost"]].split(",")
+ALLOWED_HOSTS = ["127.0.0.1"]#.split(",")
 
 # Application definition
 
@@ -51,7 +50,7 @@ INSTALLED_APPS = [
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
-CSRF_TRUSTED_ORIGINS = ["https://my-recipes.azurewebsites.net", "https://www.my-recipes.azurewebsites.net"]
+#CSRF_TRUSTED_ORIGINS = [os.environ.get('DigitalOceanDomain')]
 
 FILE_UPLOAD_HANDLERS = [
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
@@ -94,12 +93,12 @@ WSGI_APPLICATION = 'recipe.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': token["DB_ENGINE"],
-        'NAME': token["DB_NAME"],
-        'USER': token["DB_USER"],
-        'PASSWORD': token["DB_PASSWORD"],
-        'HOST': token["DB_HOST"],
-        'PORT': token["DB_PORT"]
+        'ENGINE': os.environ.get('DB_ENGINE'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT')
     }
 }
 
@@ -154,8 +153,8 @@ LOGOUT_REDIRECT_URL = "/"
 
 # AWS S3 access
 AWS_STORAGE_BUCKET_NAME = 'myminiprojectrecipe'
-AWS_S3_ACCESS_KEY_ID = token["AWS_S3_ACCESS_KEY_ID_RECIPES"]
-AWS_S3_SECRET_ACCESS_KEY = token["AWS_S3_SECRET_ACCESS_KEY_RECIPES"]
+AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_S3_ACCESS_KEY_ID_RECIPES')
+AWS_S3_SECRET_ACCESS_KEY = os.environ.get('AWS_S3_SECRET_ACCESS_KEY_RECIPES')
 
 # AWS S3 settings
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

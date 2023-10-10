@@ -7,17 +7,9 @@ def file_validators(image):
     accept = ['image/png', 'image/jpeg', 'image/jpg']
     file_type = magic.from_buffer(image.read(), mime=True)
     
-    #if file_type not in accept:
-    #    raise ValidationError("Unsupported file type")
-    #else:        
-    #    max_width = 600
-    #    max_height = 600
-#
-    #    image = Image.open(image)
-    #    width, height = image.size
-    #    if width > max_width or height > max_height:
-    #        raise ValidationError(f"Obrázek má příliš velké rozměry. Maximální rozměry jsou {max_width}x{max_height} px.")
-    #    return image
+    if file_type not in accept:
+        raise ValidationError("Unsupported file type")
+    return image
     
 def validate_image_dimensions(image):
     pass    

@@ -4,11 +4,14 @@ from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
-import openai, json
+import openai, json, os
 from serpapi import GoogleSearch
+from dotenv import load_dotenv
 
-file_path = open('data/aws_s3.json', 'r')
-token = json.load(file_path)
+load_dotenv()
+
+#file_path = open('data/aws_s3.json', 'r')
+#token = json.load(file_path)
 
 def home(request):
     profile = Profile.objects.all()
@@ -27,7 +30,7 @@ def search_recipe(request):
                 "q": searched,
                 "hl": "en",
                 "gl": "us",
-                "api_key": token["SERPAPI_KEY"],
+                "api_key": os.environ.get("SERPAPI_KEY"),
             }
             search = GoogleSearch(params)
             result = search.get_dict()
@@ -77,7 +80,7 @@ def create(request):
         "category": category
     })
 
-openai.api_key = token["OPENAI_API_KEY"]
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 def recipes_by_ai(request):
     if request.method == 'POST':
