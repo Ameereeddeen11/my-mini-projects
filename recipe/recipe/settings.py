@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'recipe.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if DEBUG:
+if os.getenv("DEVELOPMENT_MODE", "False") == "True":
     DATABASES = {
         'default': {
             'ENGINE': os.environ.get('DB_ENGINE'),
@@ -102,7 +102,7 @@ if DEBUG:
             'PORT': os.environ.get('DB_PORT')
         }
     }
-else:
+elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
     if os.getenv("DATABASE_URL", None) is None:
         raise Exception("DATABASE_URL environment variable not defined")
     DATABASES = {
