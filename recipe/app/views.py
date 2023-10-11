@@ -4,7 +4,7 @@ from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
-import openai, json, os
+import openai, json, os, sys
 from serpapi import GoogleSearch
 from dotenv import load_dotenv
 
@@ -30,7 +30,7 @@ def search_recipe(request):
                 "q": searched,
                 "hl": "en",
                 "gl": "us",
-                "api_key": os.environ.get("SERPAPI_KEY"),
+                "api_key": os.getenv("SERPAPI_KEY"),
             }
             search = GoogleSearch(params)
             result = search.get_dict()
@@ -80,7 +80,7 @@ def create(request):
         "category": category
     })
 
-openai.api_key = os.environ.get("OPENAI_API_KEY")
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def recipes_by_ai(request):
     if request.method == 'POST':
