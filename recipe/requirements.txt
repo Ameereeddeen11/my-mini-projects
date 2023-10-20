@@ -18,11 +18,13 @@ django-storages==1.13.2
 filelock==3.12.2
 frozenlist==1.4.0
 google-search-results==2.4.2
+gunicorn==21.2.0
 idna==3.4
 jmespath==1.0.1
 multidict==6.0.4
 mysqlclient==2.2.0
 openai==0.28.0
+packaging==23.2
 Pillow==10.0.0
 platformdirs==3.10.0
 psycopg2==2.9.7
@@ -41,4 +43,3 @@ tzdata==2023.3
 urllib3==1.26.16
 whitenoise==6.5.0
 yarl==1.9.2
-gunicorn==21.2.0
