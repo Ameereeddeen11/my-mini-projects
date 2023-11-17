@@ -1,13 +1,17 @@
-# Welcome to my mini projects
-Here you can checkout some of my mini projects such as My Recipes, my python bot for Telegram, frond-end of my school project.<br>
-I will develope this repository by adding another own projects
-
-
 # My Recipe project
 Firstly I want to say that this project is not finished yet. I will develope it by adding new features and techlogies. <br>
 This project is a web application for sharing recipes and also you can make recipe from AI with ingredients you have. You can also search recipes from other websites. <br>
-I'm using Django framework for back-end and Bootstrap for front-end. I enriched it with some API's and technologies such as OpenAI API, Google API and Docker. <br>
 
+## Features
+- Python 3.11  & Django 4.2.3
+- Install via Docker or Pip
+- I use PostgreSQL database
+- Static files are in AWS S3
+- I use API's such as OpenAI API, Google API
+- Styling with Bootstrap 5
+- I dry forms with crispy forms
+
+## How to run the project with Docker or without Docker
 If you want to run the project My Recipe on your PC or laptop, you can use Docker. <br>
 1. Install Docker on your PC or laptop <br>
 2. Clone this repository in DockerHub https://hub.docker.com/r/amiriddin/recipe-django <br>
@@ -28,4 +32,3 @@ If you don't want to use Docker, you can run the project without Docker. <br>
 7. Make a `.env` file and add your own secret key for AWS S3, OpenAI API key, Secret key for django app, Google API key and database settings <br>
 8. Run the command `python manage.py makemigrations` and then `python manage.py migrate` <br>
 9. Run the command `python manage.py runserver` <br>
-
