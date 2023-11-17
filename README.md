@@ -1,16 +1,27 @@
 # Welcome to my mini projects
-Here you can checkout some of my mini projects such as Recipes, my python bot to Telegram, frond-end of my school project.<br>
+Here you can checkout some of my mini projects such as My Recipes, my python bot for Telegram, frond-end of my school project.<br>
 I will develope this repository by adding another own projects
 
 
-# Recipe project
-If you want to run the project Recipe to your computer. You can use docker. 
-1. Clone the repository 
-2. In your directory of your Command Line run the docker compose by using command: <strong>docker-compose run --rm app django-admin startproject main .</strong>
-<br>It will create database and folder <strong>.mysql_data </strong> in your directory <br>
-The resent why you have to run this command <strong>docker-compose run --rm app django-admin startproject main .</strong> is when I dockerized the project I have all most done the project. 
-If you don't do this step it will show the error that says it can't connect to database. 
-3. Then write the command: <strong>docker-compose up</strong> <br>
-It will run Recipe project 
-4. Open your browser and write this host: <strong>127.0.0.0:8000</strong>
-5. It will show you "This page don't found" so after host write path /recipe/ That means you have to write this: <strong>127.0.0.0:8000/recipe/ 
+# My Recipe project
+If you want to run the project My Recipe on your PC or laptop, you can use Docker. <br>
+1. Install Docker on your PC or laptop <br>
+2. Clone this repository in DockerHub https://hub.docker.com/r/amiriddin/recipe-django <br>
+3. Open terminal and go to the directory with the project <br>
+4. Clone this repository in GitHub <br>
+5. Open directory with the `recipe` project in terminal <br>
+6. Make a `.env` file and add your own secret key for AWS S3, OpenAI API key, Secret key for django app and database settings <br>
+7. Then run the command `docker-compose up` <br>
+8. Open your browser and go to the address `http://localhost:8000/` <br>
+
+If you don't want to use Docker, you can run the project without Docker. <br>
+1. Install Python3 on your PC or laptop <br>
+2. Clone this repository in GitHub <br>
+3. Open directory with the `recipe` project in terminal <br>
+4. Create virtual environment with the command `python3 -m venv venv` <br>
+5. Activate virtual environment with the command `source venv/bin/activate` <br>
+6. Install all requirements with the command `pip install -r requirements.txt` <br>
+7. Make a `.env` file and add your own secret key for AWS S3, OpenAI API key, Secret key for django app and database settings <br>
+8. Run the command `python manage.py makemigrations` and then `python manage.py migrate` <br>
+9. Run the command `python manage.py runserver` <br>
+
