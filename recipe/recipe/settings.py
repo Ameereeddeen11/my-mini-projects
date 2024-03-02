@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY_RECIPES')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG') == 'True'
+DEBUG = True
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS")
 
 # Application definition
 
@@ -50,7 +50,7 @@ INSTALLED_APPS = [
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
-#CSRF_TRUSTED_ORIGINS = [os.environ.get('DigitalOceanDomain')]
+CSRF_TRUSTED_ORIGINS = [os.environ.get('DJANGO_ALLOWED_HOSTS')]
 
 FILE_UPLOAD_HANDLERS = [
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
@@ -169,5 +169,6 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_DEFAULT_ACL = None
 AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazon.com" % AWS_STORAGE_BUCKET_NAME
 AWS_S3_FILE_OVERWRITE = False
-# Toto vypne sběr statických souborů
+
+# This is to ensure that the metadata is saved in the S3 bucket
 AWS_PRELOAD_METADATA = True
