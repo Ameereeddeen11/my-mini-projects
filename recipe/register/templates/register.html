@@ -28,7 +28,11 @@
                                     <p>You can <a href="/login/">login</a> if you have account already</p>
                                 {% endblock %}
                             </div>
-                            <a href="/login/"><button class="btn btn-primary btn-lg btn-block" type="submit">{% block sign_button %}Sign in{% endblock %}</button>
+                            <a href="/login/"><button class="btn btn-primary btn-lg btn-block" type="submit">{% block sign_button %}Sign in{% endblock %}</button></a>
+                            <a href="{% provider_login_url 'google' %}" class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #dd4b39;" role="button" aria-pressed="true">
+                                <i class="bi bi-googlem me-2"></i>
+                                {% block google %}Sign in{% endblock %}
+                            </a>
                         </div>
                     </div>
                 </div>
