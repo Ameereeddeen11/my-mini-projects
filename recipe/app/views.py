@@ -4,7 +4,7 @@ from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
-import openai, json, os, sys
+import openai, json, os, sys, requests
 from serpapi import GoogleSearch
 from dotenv import load_dotenv
 
@@ -25,8 +25,13 @@ def search_recipe(request):
     if request.method == "GET":
         searched = request.GET["search"]
         post = Recipes.objects.filter(title__contains=searched).all()
-        if post == None:    
-            params = {
+        if post:
+            return render(request, "search_recipe.html", {
+                "search": searched,
+                "post": post
+            })
+        else:
+            '''params = {
                 "q": searched,
                 "hl": "en",
                 "gl": "us",
@@ -34,24 +39,20 @@ def search_recipe(request):
             }
             search = GoogleSearch(params)
             result = search.get_dict()
-            try:
-                recipes_results = result["recipes_results"]
-                ingredients_recipe = json.loads(json.dumps(recipes_results[0]["ingredients"]))
-                return render(request, "search_recipe.html", {
-                    "search": searched,
-                    "post": post,
-                    "result": recipes_results,
-                    "ingredients": ingredients_recipe,
-                })
-            except:
-                return render(request, "search_recipe.html", {
-                    "search": searched,
-                    "post": post
-                })
-        else:
+            recipes_results = result["recipes_results"]
+            ingredients_recipe = json.loads(json.dumps(recipes_results[0]["ingredients"]))'''
+            app_id = os.getenv("EDAMAM_APP_ID")
+            app_key = os.getenv("EDAMAM_APP_KEY")
+            url = f"https://api.edamam.com/api/recipes/v2?q={searched}&app_id={app_id}&type=public&app_key={app_key}"
+            edamam_response = requests.get(url)
+            edamam_data = edamam_response.json()
+            recipes_results = edamam_data["hits"][0]["recipe"]
+            ingredients_recipe = recipes_results["ingredientLines"]
             return render(request, "search_recipe.html", {
                 "search": searched,
-                "post": post
+                "post": post,
+                "result": recipes_results,
+                "ingredients": ingredients_recipe,
             })
     else:
         return redirect("/recipe/")

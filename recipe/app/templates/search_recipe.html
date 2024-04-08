@@ -10,7 +10,7 @@
                             <input class="form-control" id="searchId" type="search" placeholder="{{search}}" aria-label="Search" name="search">
                         {% else %}
                             <input class="form-control" id="searchId" type="search" placeholder="Search" aria-label="Search" name="search">
-                        {% endif %}    
+                        {% endif %}
                         <button class="search-button" role="button" id="searchId" type="submit"><i class="bi bi-search"></i></button>
                     </div>
                 </form>
@@ -24,15 +24,15 @@
                 <a class="float-end btn create-button shadow p-2 me-md-2" href="/recipes_by_ai/" role="button"><i class="bi bi-robot"></i> Recipes by AI</a>
             </div>
         </div>
-    
+
 {% endblock %}
 {% block content %}
     {% if search %}
         {% if post %}
-        <div class="row rounded-5" style="background-color: white;">
-            <h2 class="text-center py-1">Search results for: {{ search }}</h2>
-        </div>
-        <br>
+            <div class="row rounded-5" style="background-color: white;">
+                <h2 class="text-center py-1">Search results for: {{ search }}</h2>
+            </div>
+            <br>
         {% endif %}
         <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1">
             {% for recipes in post %}
@@ -53,21 +53,21 @@
                                     <br>
                                     <a href="/detail/{{ recipes.id }}" class="btn btn-primary">Recipe</a>
                                     {% if user.is_authenticated %}
-                                    {% for like in recipes.imagesrecipesowner_set.all %}
-                                        {% if user in like.likes.all %}
-                                            <a href="{% url 'recipe_like' recipes.id %}" type="submit" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
-                                            <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>
-                                            {% for likes in recipes.imagesrecipesowner_set.all %}
-                                                </svg> {{ likes.number_of_likes }}</a>
-                                            {% endfor %}
-                                        {% else %}
-                                            <a href="{% url 'recipe_like' recipes.id %}" type="submit" class="btn btn-outline-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
-                                            <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>
-                                            {% for likes in recipes.imagesrecipesowner_set.all %}
-                                                </svg> {{ likes.number_of_likes }}</a>
-                                            {% endfor %}
-                                        {% endif %}
-                                    {% endfor %}
+                                        {% for like in recipes.imagesrecipesowner_set.all %}
+                                            {% if user in like.likes.all %}
+                                                <a href="{% url 'recipe_like' recipes.id %}" type="submit" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                                <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>
+                                                {% for likes in recipes.imagesrecipesowner_set.all %}
+                                                    </svg> {{ likes.number_of_likes }}</a>
+                                                {% endfor %}
+                                            {% else %}
+                                                <a href="{% url 'recipe_like' recipes.id %}" type="submit" class="btn btn-outline-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                                <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>
+                                                {% for likes in recipes.imagesrecipesowner_set.all %}
+                                                    </svg> {{ likes.number_of_likes }}</a>
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endfor %}
                                     {% else %}
                                         <a href="/login/" type="submit" class="btn btn-outline-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
                                         <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>
@@ -82,13 +82,13 @@
                 </div>
             {% endfor %}
         </div>
-        {% if result %}
-            <div class="row rounded-5" style="background-color: white;">
-                <h2 class="text-center py-1">Similar recipes</h2>
-            </div>
-            <br>
-        {% endif %}
-        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1">
+        {% comment %}
+            {% if result %}
+                <div class="row rounded-5" style="background-color: white;">
+                    <h2 class="text-center py-1">Similar recipes</h2>
+                </div>
+                <br>
+            {% endif %}
             {% for recipe in result %}
                 <div class="col">
                     <div class="card mb-3 shadow p-2" style="max-width: 540px;">
@@ -99,10 +99,7 @@
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <h5 class="card-title">{{recipe.title}}</h5>
-                                    <!--<a data-bs-toggle="collapse" data-bs-target="#recipe" aria-expanded="false" aria-controls="{{recipes.id}}">About recipe</a>-->
-                                    <!--<div class="collapse" id="recipe">-->
-                                        <p class="card-text">Ingredients for this recipe: {% for ingredient in ingredients %} {{ingredient}}, {% endfor %}. It takes {{recipe.total_time}}</p>
-                                    <!--</div>-->
+                                    <p class="card-text">Ingredients for this recipe: {% for ingredient in ingredients %} {{ingredient}}, {% endfor %}. It takes {{recipe.total_time}}</p>
                                     <a href="{{ recipe.link }}" class="btn btn-primary" target="_blank">Recipe</a>
                                 </div>
                             </div>
@@ -110,7 +107,29 @@
                     </div>
                 </div>
             {% endfor %}
-        </div>
+        {% endcomment %}
+        {% if edamam and ingredients %}
+            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1">
+                <div class="col">
+                    <div class="card mb-3 shadow p-2" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-12">
+                                <img src="{{ edamam.image }}" class="img-fluid rounded-start rounded fit-cover" alt="...">
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{edamam.label}}</h5>
+                                    <p class="card-text">Ingredients for this recipe: {{ ingredients }}. It takes {{edamam.totalTime}}</p>
+                                    <a href="{{ edamam.url }}" class="btn btn-primary" target="_blank">Recipe</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <h1>No recipes found</h1>
+        {% endif %}
     {% else %}
         <h1>You forgot to search</h1>
     {% endif %}
