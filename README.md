@@ -11,6 +11,13 @@ This project is a web application for sharing recipes and also you can make reci
 - Styling with Bootstrap 5
 - I dry forms with crispy forms
 
+## Future features I want to add
+- I want to add: <br> - RabitMQ and Redis <br>
+                      - a feature that will allow users to generate recipes from an image of fridge or ingredients <br>
+                      - a feature that will detect food and show recipes for it
+- I want to improve image and text validation
+- Allow users to share their recipes on another social media 
+
 ## How to run the project with Docker or without Docker
 If you want to run the project My Recipe on your PC or laptop, you can use Docker. <br>
 1. Install Docker on your PC or laptop <br>
