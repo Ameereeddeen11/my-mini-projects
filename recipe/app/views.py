@@ -10,9 +10,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-#file_path = open('data/aws_s3.json', 'r')
-#token = json.load(file_path)
-
 def home(request):
     profile = Profile.objects.all()
     recipe = Recipes.objects.all()

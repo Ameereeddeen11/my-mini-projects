@@ -7,7 +7,7 @@ This project is a web application for sharing recipes and also you can make reci
 - Install via Docker or Pip
 - I use PostgreSQL database
 - Static files are in AWS S3
-- I use API's such as OpenAI API, Google API
+- I use API's such as OpenAI API, Google API, Edamam API
 - Styling with Bootstrap 5
 - I dry forms with crispy forms
 
