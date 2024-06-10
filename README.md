@@ -1,6 +1,6 @@
 # My Recipe project
 Firstly I want to say that this project is not finished yet. I will develop it by adding new features and technologies. <br>
-This project is a web application for sharing recipes and also you can make recipes from AI with ingredients you have. You can also search for recipes from other websites. Now you can find <a href="https://your-recipe-61b00c24cb63.herokuapp.com/">here</a> it is deployed on Heroku server. Nowadays on my website, you can't generate recipes from AI<br>
+This project is a web application for sharing recipes and also you can make recipes from AI with ingredients you have. You can also search for recipes from other websites. Now you can find <a href="https://your-recipe-61b00c24cb63.herokuapp.com/">here</a> it is deployed on Heroku server. Nowadays on my website, you can't generate recipes from AI and I usually turn off server from 23:00 to 8:00 hours in Czech Republic time. I'm sorry for these complications<br>
 
 ## Features
 - Python 3.11  & Django 4.2.3
