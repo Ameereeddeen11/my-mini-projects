@@ -5,7 +5,7 @@ services:
       - pg_data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: bUeN0
       POSTGRES_DB: postgres
     ports:
       - 5432:5432
@@ -24,3 +24,4 @@ services:
 volumes:
   pg_data:
     driver: local
+    
