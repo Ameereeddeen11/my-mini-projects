@@ -1,22 +1,25 @@
- services:
-   db:
-     image: mysql:latest
-     container_name: recipe-db
-     environment:
-       MYSQL_DATABASE: 'recipe'
-       MYSQL_USER: 'user'
-       MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-     volumes:
-       - .mysql_data:/var/lib/mysql
-   app:
-     image: amiriddin/recipe-django
-     ports:
-       - 8000:8000
-     volumes:
-       - .:/app
-     container_name: recipe_container
-     command: python manage.py runserver 0.0.0.0:8000
-     depends_on:
-       - db
- volumes:
-   mysql_data:
+services:
+  db:
+    image: postgres
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: bUeN0
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    container_name: recipe_db
+volumes:
+  pg_data:
+    driver: local
+  app:
+    image: amiriddin/my-recipe-project
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    container_name: recipe_container
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - db
