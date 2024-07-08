@@ -1,22 +1,22 @@
 services:
   db:
-    image: postgres
+    image: postgres:latest
     volumes:
       - pg_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: bUeN0
-      POSTGRES_DB: postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - 5432:5432
     container_name: recipe_db
-  app:
-    image: amiriddin/my-recipe-project
+  web:
+    build: .
     ports:
       - 8000:8000
     volumes:
       - .:/app
-    container_name: recipe_container
+    container_name: recipe_web
     command: python manage.py runserver 0.0.0.0:8000
     depends_on:
       - db
